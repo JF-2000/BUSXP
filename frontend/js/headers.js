@@ -9,9 +9,7 @@ if(document.getElementById('head')){
             <a class="ab" href="/views/rutas/rutas.html">Rutas</a>
             <a class="ab" href="">Contactos</a>
             <a class="ab" href="">Nosotros</a>
-            
-            <a href="/views/users/login.html"">Login</a>
-            <a href="/views/users/registrar.html"">Register</a>
+            <a class="ab2" href="/views/users/login.html">Iniciar sesión</a>
 
         </nav>
     </div>
@@ -28,7 +26,7 @@ if(document.getElementById('head')){
                 <a class="ab" href="/views/rutas/rutas.html">Rutas</a>
                 <a class="ab" href="">Contactos</a>
                 <a class="ab" href="">Nosotros</a>
-                <a class="ab" href="">${localStorage.getItem('uname')}</a>
+                <a class="ab2" id="" href="">${localStorage.getItem('uname')}</a>
             </nav>
         </div>
         `

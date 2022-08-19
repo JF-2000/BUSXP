@@ -65,6 +65,25 @@ header nav .ab:hover{
     color: #e5e5e5;
 }
 
+header nav .ab2{
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 10px;
+    line-height: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: #e5e5e5;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+header nav .ab2:hover{
+    background: #123862;
+    border-radius: 50px;
+    color: #e5e5e5;
+}
+
 
 @media screen and (max-width: 1100px){
     header .logo, header nav{
@@ -351,6 +370,24 @@ h6 {
 }
 
 /*BTN*/
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+
+/*BTN*/
+
+.nopay{
+    display: none;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: red;
+}
+
 .btn {
     line-height: 50px;
     padding: 0 50px;
@@ -435,7 +472,7 @@ h6 {
 }
 
 #loader {
-	position: absolute;
+	position: relative;
 	left: 50%;
 	top: 50%;
 	z-index: 1;

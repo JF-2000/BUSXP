@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="../../style/fontasome.css">
-    <script src="https://www.paypal.com/sdk/js?client-id=AUyIurN72-L5Y6Mg7eb9Nh5i5CIl6DV_OW_eUW5LMjolkMogTk4HmgYqQwsRPCxLx2A1iPBkvyuk_o88&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUyIurN72-L5Y6Mg7eb9Nh5i5CIl6DV_OW_eUW5LMjolkMogTk4HmgYqQwsRPCxLx2A1iPBkvyuk_o88"></script>
     <title>Compra de ticket</title>
 </head>
 <body onload="ticket();">
@@ -19,6 +19,16 @@
         </div>
         <div class="card-body">
             <div id="tique"></div>
+            <div class="form-row2">
+                <div class="name">Personas:</div>
+                
+                <div class="value">
+                    <div class="col-5 buscar">
+                        <input type="text" id="personas" onkeypress="return valideKey(event);">
+                    </div>
+                </div>
+            </div>
+
             <div style="text-align: center;">
                 <div id="paypal-button-container"></div>
             </div>  

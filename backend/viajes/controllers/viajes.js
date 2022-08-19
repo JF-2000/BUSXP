@@ -50,4 +50,44 @@ controllers.viajeid = async function(req,res){
     res.send(data)
 }
 
+controllers.viajemax = async function(req,res){
+    const {viaje,personas,iduser} = req.body;
+    var cantp = parseInt(personas,10)
+    await sql.connect(db)
+    if(viaje==null||viaje==undefined||viaje==""){
+        return res.send('noviaje');
+    }
+    if(iduser==null||iduser==undefined||iduser==""){
+        return res.send('nouser');
+    }
+    if(personas <= 0){
+        return res.send("zero");
+    }
+    var capviaje = await sql.query(`SELECT idviaje, capacidad, fcapacidad 
+    FROM viajes WHERE idviaje = ${viaje}`)
+    if(capviaje.recordset[0].fcapacidad == capviaje.recordset[0].capacidad){
+        return res.send("max");
+    } 
+    if((capviaje.recordset[0].fcapacidad + cantp) >= capviaje.recordset[0].capacidad){
+        return res.send("maxp");
+    }
+
+    await sql.query(`UPDATE viajes SET fcapacidad = fcapacidad + ${personas} WHERE idviaje = ${viaje}`)
+    res.sendStatus(200)
+ 
+}
+
+controllers.viajeres = async function(req,res){
+    const {viaje,personas} = req.body;
+    if(viaje==null||viaje==undefined||viaje==""){
+        return res.send('noviaje');
+    }
+    if(personas <= 0){
+        return res.send("zero");
+    }
+    await sql.connect(db)
+    await sql.query(`UPDATE viajes SET fcapacidad = fcapacidad - ${personas} WHERE idviaje = ${viaje}`)
+    res.sendStatus(200)
+}
+
 module.exports = controllers;

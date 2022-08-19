@@ -54,6 +54,7 @@ async function logger(){
             localStorage.setItem('uid',`${usuario[0].iduser}`)
             localStorage.setItem('uname',`${usuario[0].nombre}`)
             localStorage.setItem('uauth',`${usuario[0].auth}`)
+            window.location.assign('/index.html')
 
         }
     }

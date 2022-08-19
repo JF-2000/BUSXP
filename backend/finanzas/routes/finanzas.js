@@ -1,5 +1,5 @@
 const express = require('express');
-const viajes = require("../controllers/viajes")
+const ticket = require("../controllers/ticket")
 var app = express();
 
 app.use((req, res, next) => {
@@ -7,13 +7,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-  
 
-app.get('/viajes/allgenerar', viajes.generarviajes)
-app.get('/viajes/allviajes', viajes.allviajes)
-app.get('/viajes/:idviaje', viajes.viajeid)
-app.post('/viajes/max', viajes.viajemax)
-app.post('/viajes/res', viajes.viajeres)
-
+app.post('/ticket/compra', ticket.pagoticket)
 
 module.exports = app;
