@@ -8,28 +8,22 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/fontasome.css">
-    <title>Rutas</title>
+    <title>Tickets</title>
 </head>
-<body onload="pviajes()">
+<body onload="tickets()">
     <header id="head"></header>
-    <div> 
-        <div class="col-4 buscar">
-            <label>Buscar:</label>
-            <input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre">
-        </div>
-        <button class="btn btn-primary" onclick="prutas()">Generar</button>
-    </div><br>
     <div class="card-5">
         <div class="card-heading">
-            <h2 class="title2">Rutas de viajes y horarios</h2>
+            <div class="title2">Mis tickets</div>
         </div>
-        <div id="trutas"></div>
-
+        <div class="card-body">
+            <div id="ltickets"></div>
+        </div>
     </div>
+
 </body>
 <script src="/js/config.js"></script>
-<script src="/js/helpers/buscar.js"></script>
-<script src="../../js/headers.js"></script>
-<script src="./js/rutas.js"></script>
+<script src="/js/headers.js"></script>
+<script src="./js/ticketinv.js"></script>
 <script src="/js/controls/controlU.js"></script>
 </html>

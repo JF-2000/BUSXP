@@ -90,4 +90,16 @@ controllers.viajeres = async function(req,res){
     res.sendStatus(200)
 }
 
+setInterval(resetrutas, 1800000)
+async function resetrutas(){
+
+    let hoy = new Date;
+    let hora = hoy.getHours();
+
+    if(hora == '23' || hora == 23){
+        await sql.connect(db)
+        await sql.query(`UPDATE viajes SET fcapacidad = 0`)
+    }
+}
+
 module.exports = controllers;

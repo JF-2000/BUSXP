@@ -10,14 +10,13 @@ body{
     width: 90%;
     max-width: 1800px;
     margin: auto;
-    overflow: hidden;
 }
 
-/*HEADER*/
+/*header*/
 
 header{
     background: #007bff;
-    overflow: hidden;
+    display: inline-block;
     width: 100%;
     margin-bottom: 20px;
 }
@@ -60,7 +59,7 @@ header nav .ab{
 }
 
 header nav .ab:hover{
-    background: #123862;
+    background: #285487;
     border-radius: 50px;
     color: #e5e5e5;
 }
@@ -79,11 +78,28 @@ header nav .ab2{
 }
 
 header nav .ab2:hover{
-    background: #123862;
+    background: #285487;
     border-radius: 50px;
     color: #e5e5e5;
 }
 
+header nav .dropmenu{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    line-height: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: #e5e5e5;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+header nav .dropmenu:hover{
+    background: #285487;
+    color: #e5e5e5;
+}
 
 @media screen and (max-width: 1100px){
     header .logo, header nav{
@@ -130,6 +146,21 @@ form{
     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 }
 
+.card-2 {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 350px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+}
+  
   
 .card-3 {
   background: #fff;
@@ -300,6 +331,15 @@ form{
 .title2 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 42px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+}
+
+.title3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
     font-weight: 900;
     text-transform: uppercase;
     text-align: center;
@@ -495,6 +535,84 @@ h6 {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
+
+/* DROPDOWN USERMENU */
+
+/* header{
+    background-color: #e5e5e5;
+    display: flex;
+    align-items: baseline;
+    padding: .5rem;
+    gap: 1rem;
+} */
+
+.link{
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown{
+    display: inline-block;
+    position: relative;
+    height: 80px;
+}
+
+.dropdown-menu{
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: calc(100% + .25rem);
+    background-color: white;
+    padding: .70rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.dropdown.active > .link + .dropdown-menu{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu a{
+    display: flex;
+    text-decoration: none;
+    padding: 10px 20px;
+    line-height: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+
+.dropdown-menu ul{
+    padding: 0;
+}
+
+.dropdown-menu li{
+   list-style: none;
+   padding: 3px;
+}
+
+.dropdown-menu li:hover{
+    background-color: rgb(220, 220, 220);
+}
+
+/* Tickets */
+
+.titulo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #007bff;
+}
+
 
 
 

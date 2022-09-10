@@ -9,7 +9,7 @@ if(document.getElementById('head')){
             <a class="ab" href="/views/rutas/rutas.html">Rutas</a>
             <a class="ab" href="">Contactos</a>
             <a class="ab" href="">Nosotros</a>
-            <a class="ab2" href="/views/users/login.html">Iniciar sesión</a>
+            <a class="ab" href="/views/users/login.html">Iniciar sesión</a>
 
         </nav>
     </div>
@@ -26,12 +26,44 @@ if(document.getElementById('head')){
                 <a class="ab" href="/views/rutas/rutas.html">Rutas</a>
                 <a class="ab" href="">Contactos</a>
                 <a class="ab" href="">Nosotros</a>
-                <a class="ab2" id="" href="">${localStorage.getItem('uname')}</a>
+                <div class="dropdown" data-dropdown>
+                    <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="/views/users/ticketinv.html">Tickets</a></li>
+                            <li><a href="" id="CS">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
             </nav>
+
         </div>
         `
         head.innerHTML = html;
+
     }
 
+}
+
+document.addEventListener("click", e => {
+    const isdropbutton = e.target.matches("[data-dropdown-button]");
+    if(!isdropbutton && e.target.closest("[data-dropdown]") != null) return 
+
+    let currentdrop
+    if(isdropbutton){
+        currentdrop = e.target.closest("[data-dropdown]")
+        currentdrop.classList.toggle("active")
+    }
+
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        if(dropdown === currentdrop) return
+        dropdown.classList.remove("active")
+    })
+})
+
+if(document.getElementById('CS')){
+    document.getElementById('CS').addEventListener('click', e =>{
+        localStorage.clear();
+    })
 }
 

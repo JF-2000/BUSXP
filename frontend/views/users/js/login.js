@@ -50,11 +50,14 @@ async function logger(){
                 return swal("¡Error!","El correo o la contraseña son incorrectos!","error") 
             }
             var usuario = await JSON.parse(xhr.response)
-            swal("¡Ingresado!",`Bienvenido ${usuario[0].nombre}, disfrute de nuestros servicios.`,"success")
             localStorage.setItem('uid',`${usuario[0].iduser}`)
             localStorage.setItem('uname',`${usuario[0].nombre}`)
-            localStorage.setItem('uauth',`${usuario[0].auth}`)
-            window.location.assign('/index.html')
+            var _0x27ac=["\x61\x75\x74\x68","\x75\x61\x75\x74\x68","\x75\x73\x65\x72","\x73\x65\x74\x49\x74\x65\x6D","\x61\x64\x6D"];
+            if(usuario[0][_0x27ac[0]]=== 1){localStorage[_0x27ac[3]](_0x27ac[1],`${_0x27ac[2]}`)};if(usuario[0][_0x27ac[0]]=== 2){localStorage[_0x27ac[3]](_0x27ac[1],`${_0x27ac[4]}`)}
+            swal("¡Ingresado!",`Bienvenido ${usuario[0].nombre}, disfrute de nuestros servicios.`,"success")
+            .then(function(){window.location.assign('/index.html')})
+             
+  
 
         }
     }
@@ -70,3 +73,11 @@ async function logger(){
     xhr.send(JSON.stringify(data));
         
 }
+
+document.getElementById('password')
+    .addEventListener('keyup', function(event) {
+        if (event.code === 'Enter'){
+            event.preventDefault();
+            logger();
+        }
+});
