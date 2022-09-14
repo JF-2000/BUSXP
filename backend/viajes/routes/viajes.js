@@ -12,8 +12,8 @@ app.use((req, res, next) => {
 app.get('/viajes/allgenerar', viajes.generarviajes)
 app.get('/viajes/allviajes', viajes.allviajes)
 app.get('/viajes/:idviaje', viajes.viajeid)
+
 app.post('/viajes/max', viajes.viajemax)
 app.post('/viajes/res', viajes.viajeres)
-
 
 module.exports = app;

@@ -6,7 +6,7 @@ if(document.getElementById('head')){
         <div class="logo">BUSXP</div>
         <nav>
             <a class="ab" href="/index.html">Inicio</a>
-            <a class="ab" href="/views/rutas/rutas.html">Rutas</a>
+            <a class="ab" href="/views/rutas/viajes.html">Rutas</a>
             <a class="ab" href="">Contactos</a>
             <a class="ab" href="">Nosotros</a>
             <a class="ab" href="/views/users/login.html">Iniciar sesión</a>
