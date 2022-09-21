@@ -1,5 +1,5 @@
 const express = require('express');
-const viajes = require("../controllers/viajes")
+const ruta = require("../controllers/ruta")
 var app = express();
 
 app.use((req, res, next) => {
@@ -7,12 +7,12 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-  
 
-app.get('/viajes/allgenerar', viajes.generarviajes)
-app.get('/viajes/allviajes', viajes.allviajes)
-app.get('/viajes/:idviaje', viajes.viajeid)
-app.post('/viajes/max', viajes.viajemax)
-app.post('/viajes/res', viajes.viajeres)
+app.get('/ruta/allrutas', ruta.allruta)
+app.get('/ruta/:idruta', ruta.rutaxid)
+app.post('/ruta/cruta', ruta.crearuta)
+app.post('/ruta/mruta', ruta.modificaruta)
+app.post('/ruta/iruta', ruta.inhabilitarruta)
+
 
 module.exports = app;

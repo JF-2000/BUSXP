@@ -202,6 +202,17 @@ form{
     -moz-border-radius-topright: 10px;
     border-top-right-radius: 10px;
 }
+
+.card-heading2 {
+    padding: 20px 0;
+    background: #ffc107;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+}
   
 .card-body {
     padding: 52px 70px;
@@ -458,6 +469,15 @@ h6 {
     padding: 0 40px;
     color: #fff;
 }
+
+.btn4 {
+    font-size: 16px;
+    line-height: 45px;
+    font-weight: 700;
+    padding: 0 20px;
+    color: #fff;
+}
+
 
 /* SWEETALERT */
 .swal{

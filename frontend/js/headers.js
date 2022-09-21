@@ -43,6 +43,40 @@ if(document.getElementById('head')){
 
     }
 
+    if(localStorage.getItem('uauth') == 'adm'){
+        var head = document.getElementById('head')
+        var html = `
+        <div class="wrapper">    
+            <div class="logo">BUSXP</div>
+            <nav>
+                <a class="ab" href="/index.html">Inicio</a>
+                <div class="dropdown" data-dropdown>
+                    <a class="dropmenu link" data-dropdown-button>Rutas <i class="fas fa-caret-square-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="/viewsA/rutas/lruta.html">Rutas</a></li>
+                            <li><a href="">Horarios</a></li>
+                            <li><a href="">Viajes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dropdown" data-dropdown>
+                    <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="/views/users/ticketinv.html">Tickets</a></li>
+                            <li><a href="" id="CS">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        `
+        head.innerHTML = html;
+
+    }
+
 }
 
 document.addEventListener("click", e => {
