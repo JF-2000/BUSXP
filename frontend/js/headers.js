@@ -55,7 +55,7 @@ if(document.getElementById('head')){
                     <div class="dropdown-menu">
                         <ul>
                             <li><a href="/viewsA/rutas/lruta.html">Rutas</a></li>
-                            <li><a href="">Horarios</a></li>
+                            <li><a href="/viewsA/horarios/lhorario.html">Horarios</a></li>
                             <li><a href="">Viajes</a></li>
                         </ul>
                     </div>

@@ -2,55 +2,43 @@ const db = require("../../conection");
 const sql = require('mssql');
 const controllers = {};
 
-controllers.allruta = async function(req,res){
+controllers.allhorarios = async function(req,res){
     try {
         await sql.connect(db)
-        var rutas = await sql.query("SELECT * FROM rutas")
-        var data = rutas.recordset
+        var horarios = await sql.query("SELECT * FROM horarios")
+        var data = horarios.recordset
         res.send(data)
     } catch (error) {
         console.log(error);
     }
       
 }
+// controllers.horaioxid = async function(req,res){
+//     try {
+//         const id = req.params.idhorario;
+//         await sql.connect(db)
+//         var horario = await sql.query(`SELECT * FROM horarios WHERE idruta = ${id}`)
+//         data = horario.recordset
+//         res.send(data)
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
-controllers.rutaxid = async function(req,res){
+controllers.creahorario = async function(req,res){
     try {
-        const id = req.params.idruta;
-        await sql.connect(db)
-        var ruta = await sql.query(`SELECT * FROM rutas WHERE idruta = ${id}`)
-        data = ruta.recordset
-        res.send(data)
-    } catch (error) {
-        console.log(error);
-    }
-}
+        const {rhora} = req.body;
 
-controllers.crearuta = async function(req,res){
-    try {
-        const {rdesde,rhasta,cap,monto} = req.body;
+        if(rhora == "" || rhora == null || rhora == undefined){
+            return res.send('err')
+        }
 
-        if(rdesde == "" || rdesde == null || rdesde == undefined || rdesde <= 0 ){
-            return res.send('err')
-        }
-        if(rhasta == "" || rhasta == null || rhasta == undefined || rhasta <= 0 ){
-            return res.send('err')
-        }
-        if(cap == "" || cap == null || cap == undefined || cap <= 0 ){
-            return res.send('err')
-        }
-        if(monto == "" || monto == null || monto == undefined || monto <= 0 ){
-            return res.send('err')
-        }
         await sql.connect(db)
         var request = new sql.Request();
 
         request
-        .input('rdesde',sql.VarChar(50),rdesde)
-        .input('rhasta',sql.VarChar(50),rhasta)
-        .input('cap',sql.Int,cap)
-        .input('monto',sql.Money,monto)
-        .query(`INSERT INTO rutas (rutadesde, rutahasta, capacidad, monto) VALUES (@rdesde,@rhasta,@cap,@monto)`,[rdesde,rhasta,cap,monto])
+        .input('rhora',sql.VarChar(50),rhora)
+        .query(`INSERT INTO horarios (hora) VALUES (@rhora)`,[rhora])
         res.sendStatus(200)
     } catch (error) {
         res.send('err')
@@ -94,7 +82,7 @@ controllers.modificaruta = async function(req,res){
       
 }
 
-controllers.inhabilitarruta = async function(req,res){
+controllers.inhabilitarhorario = async function(req,res){
     try {
         const {idruta} = req.body;
         if(idruta == "" || idruta == null || idruta == undefined || idruta <= 0 ){
