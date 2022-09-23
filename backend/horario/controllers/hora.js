@@ -5,7 +5,7 @@ const controllers = {};
 controllers.allhorarios = async function(req,res){
     try {
         await sql.connect(db)
-        var horarios = await sql.query("SELECT * FROM horarios")
+        var horarios = await sql.query("SELECT idhorario, CONVERT(varchar,hora,0)hora FROM horarios")
         var data = horarios.recordset
         res.send(data)
     } catch (error) {

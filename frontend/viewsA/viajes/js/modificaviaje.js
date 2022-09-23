@@ -1,23 +1,27 @@
 const url = window.location.search;
 let searchParams = new URLSearchParams(url);
-const iruta = searchParams.get('r');
+const iviaje = searchParams.get('r');
 
 var rdesde = document.getElementById('rdesde');
 var rhasta = document.getElementById('rhasta');
+var hora = document.getElementById('hora');
 var capacidad = document.getElementById('capacidad');
 var monto = document.getElementById('monto');
 var titulo = document.getElementById('titulo');
 
-async function dataruta(){
-    let ruta = [];
-    await fetch(api+`/ruta/${iruta}`)
+
+async function dataviaje(){
+    let viaje = [];
+    await fetch(api+`/viajes/${iviaje}`)
     .then(response => response.json())
-    .then((data) => ruta = data[0])
-        titulo.textContent += ruta.idruta;
-        rdesde.value = ruta.rutadesde;
-        rhasta.value = ruta.rutahasta;
-        capacidad.value = ruta.capacidad;
-        monto.value = ruta.monto;
+    .then((data) => viaje = data[0])
+        titulo.textContent += viaje.idviaje;
+        rdesde.value = viaje.viajedesde;
+        rhasta.value = viaje.viajehasta;
+        hora.value = viaje.hora;
+        capacidad.value = viaje.capacidad;
+        monto.value = viaje.monto;
+        
 }
 
 
@@ -45,13 +49,18 @@ async function guardar(){
         swal("¡Error!","¡Ingrese un monto valido para los viajes en esta ruta!","error")
         return false;
     }
+    if (hora.value == "" || hora.value == null || hora.value == undefined || hora.value > '23:00' || hora.value < '05:00'){
+        swal("¡Error!","¡Ingrese una hora valida para los viajes en esta ruta!","error")
+        return false;
+    }
 
     var data = {
-        idruta: iruta,
+        idviaje: iviaje,
         rdesde: rdesde.value,
         rhasta: rhasta.value,
+        hora: hora.value,
         cap: capacidad.value,
-        monto: monto.value,
+        monto: monto.value
         
     }
 
@@ -63,7 +72,7 @@ async function guardar(){
                 return swal("¡Error!","Ha sucedido un problema con los datos...","error") 
             }
             swal("¡Ruta modificada!","La ruta ha sido modificada exitosamente.","success")
-            .then(function(){window.location.assign('/viewsA/rutas/lruta.html')})
+            .then(function(){window.location.assign('/viewsA/viajes/lviajes.html')})
         }
     }
 
@@ -71,7 +80,7 @@ async function guardar(){
         alert("Ocurrio un problema, por favor intentelo mas tarde.")
     };
 
-    xhr.open("POST", api+"/ruta/mruta");
+    xhr.open("POST", api+"/viajes/mviaje");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 

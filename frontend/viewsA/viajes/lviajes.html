@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,26 +7,30 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/fontasome.css">
-    <title>HorariosL</title>
+    <title>Viajes</title>
 </head>
-<body onload="horariosL()">
+<body onload="pviajes()">
     <header id="head"></header>
     <div> 
-        <div class="buscar">
-            <label>Crear Horario </label>
-            <div style="display: inline-block;"><a class="btn btn3 btn-primary" href="./chorario.html"><i class="fas fa-plus icofont"></i></a></div>
+        <div class="col-4 buscar">
+            <label>Buscar:</label>
+            <input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre"><BR><BR>
+            <button class="btn btn-primary" onclick="prutas()">Generar</button>
         </div>
+        
     </div><br>
     <div class="card-5">
         <div class="card-heading">
-            <h2 class="title2">Horarios</h2>
+            <h2 class="title2">Rutas de viajes y horarios</h2>
         </div>
-        <div id="lhorarios"></div>
+        <div id="tviajes"></div>
+
     </div>
 </body>
 <script src="/js/config.js"></script>
 <script src="/js/helpers/buscar.js"></script>
-<script src="/js/headers.js"></script>
-<script src="./js/lhorario.js"></script>
+<script src="../../js/headers.js"></script>
+<script src="./js/lviajes.js"></script>
 <script src="/js/controls/controlA.js"></script>
+<script src="./js/activeviaje.js"></script>
 </html>

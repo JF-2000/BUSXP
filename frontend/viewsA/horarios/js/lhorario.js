@@ -6,14 +6,16 @@ async function horariosL(){
     .then(response => response.json())
     .then((data) => horario = data);
     html = `<table class="table table-bordered" id="tab">
-    <tr><th>ID</th><th>Horario</th><th>Activar/Desactivar</th></tr>`
+    <tr><th>ID</th><th>Horario</th></tr>`
     horario.forEach(hora => {
+
       html += 
+      
       `<tr>
         <td>${hora.idhorario}</td>
         <td>${hora.hora}</td>
 
-        <td style="width: 50px"><a href="/viewsA/rutas/mruta.html?r=" class="btn btn3 btn-warning"><i class="fas fa-edit icofont"></i></a></td>`
+      </tr>`
         // if(ruta.activo === 1){
         //   html += `<td style="width: 50px"><a href="#" onclick="activeruta(${ruta.idruta})" class="btn btn3 btn-danger"><i class="fas fa-trash-alt icofont"></i></a></td>`
         // }

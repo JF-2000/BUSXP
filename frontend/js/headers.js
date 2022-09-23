@@ -56,7 +56,7 @@ if(document.getElementById('head')){
                         <ul>
                             <li><a href="/viewsA/rutas/lruta.html">Rutas</a></li>
                             <li><a href="/viewsA/horarios/lhorario.html">Horarios</a></li>
-                            <li><a href="">Viajes</a></li>
+                            <li><a href="/viewsA/viajes/lviajes.html">Viajes</a></li>
                         </ul>
                     </div>
                 </div>
