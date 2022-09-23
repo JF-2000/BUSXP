@@ -13,10 +13,10 @@ async function verifemail(){
         if (this.readyState == 4 && this.status == 200) {
             if(xhr.response == "errid"){  
                 return swal("¡Error!","Este usuario no existe...","error")
-                .then(function(){window.location.assign('../../../index.html')}) 
+                .then(function(){window.location.assign('/views/users/registrar.html')}) 
             }
             swal('Verificación.','Su cuenta ha sido verificada!','success')
-            .then(function(){window.location.assign('../../../index.html')}) 
+            .then(function(){window.location.assign('/views/users/login.html')}) 
         }
     }
 

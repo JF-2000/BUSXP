@@ -183,7 +183,7 @@ function BPayPal(m) {
             
             if (this.readyState == 4 && this.status == 200) {
                 swal("¡Gracias por su compra!","Pago realizado!","success")
-                .then(function(){window.location.assign('/views/rutas/rutas.html')}) 
+                .then(function(){window.location.assign('/views/ticket/ticket.html')}) 
             }
         }
 
