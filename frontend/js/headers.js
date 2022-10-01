@@ -43,7 +43,7 @@ if(document.getElementById('head')){
 
     }
 
-    if(localStorage.getItem('uauth') == 'adm'){
+    var _0xe990=["\x75\x61\x75\x74\x68","\x67\x65\x74\x49\x74\x65\x6D","\x61\x64\x6D"];if(localStorage[_0xe990[1]](_0xe990[0])== _0xe990[2]){
         var head = document.getElementById('head')
         var html = `
         <div class="wrapper">    
@@ -64,7 +64,6 @@ if(document.getElementById('head')){
                     <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
                     <div class="dropdown-menu">
                         <ul>
-                            <li><a href="/views/users/ticketinv.html">Tickets</a></li>
                             <li><a href="" id="CS">Cerrar sesión</a></li>
                         </ul>
                     </div>
@@ -74,7 +73,29 @@ if(document.getElementById('head')){
         </div>
         `
         head.innerHTML = html;
+    }
 
+    var _0xc02f=["\x75\x61\x75\x74\x68","\x67\x65\x74\x49\x74\x65\x6D","\x63\x68\x6F\x66"];if(localStorage[_0xc02f[1]](_0xc02f[0])== _0xc02f[2]){
+        var head = document.getElementById('head')
+        var html = `
+        <div class="wrapper">    
+            <div class="logo">BUSXP</div>
+            <nav>
+                <a class="ab" href="/index.html">Inicio</a>
+                <a class="ab" href="/viewsC/validacion.html">Verificar tickets</a>
+                <div class="dropdown" data-dropdown>
+                    <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="" id="CS">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        `
+        head.innerHTML = html;
     }
 
 }

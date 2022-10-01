@@ -1,5 +1,5 @@
 const express = require('express');
-const ticket = require("../controllers/ticket")
+const verif = require("../controllers/verificar")
 var app = express();
 
 app.use((req, res, next) => {
@@ -8,7 +8,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/ticket/compra', ticket.pagoticket)
-app.get('/ticket/currency', ticket.usatodop)
+app.post('/verificar/verificarticket', verif.verif)
+
 
 module.exports = app;

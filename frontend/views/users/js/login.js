@@ -52,13 +52,9 @@ async function logger(){
             var usuario = await JSON.parse(xhr.response)
             localStorage.setItem('uid',`${usuario[0].iduser}`)
             localStorage.setItem('uname',`${usuario[0].nombre}`)
-            var _0x27ac=["\x61\x75\x74\x68","\x75\x61\x75\x74\x68","\x75\x73\x65\x72","\x73\x65\x74\x49\x74\x65\x6D","\x61\x64\x6D"];
-            if(usuario[0][_0x27ac[0]]=== 1){localStorage[_0x27ac[3]](_0x27ac[1],`${_0x27ac[2]}`)};if(usuario[0][_0x27ac[0]]=== 2){localStorage[_0x27ac[3]](_0x27ac[1],`${_0x27ac[4]}`)}
+            var _0xae26=["\x61\x75\x74\x68","\x75\x61\x75\x74\x68","\x75\x73\x65\x72","\x73\x65\x74\x49\x74\x65\x6D","\x61\x64\x6D","\x63\x68\x6F\x66","\x73\x65\x63\x72\x65\x74"];if(usuario[0][_0xae26[0]]== 1){localStorage[_0xae26[3]](_0xae26[1],_0xae26[2])};if(usuario[0][_0xae26[0]]== 2){localStorage[_0xae26[3]](_0xae26[1],_0xae26[4])};if(usuario[0][_0xae26[0]]== 3){localStorage[_0xae26[3]](_0xae26[1],_0xae26[5])};if(usuario[0][_0xae26[0]]== 4){localStorage[_0xae26[3]](_0xae26[1],_0xae26[6])}
             swal("¡Ingresado!",`Bienvenido ${usuario[0].nombre}, disfrute de nuestros servicios.`,"success")
             .then(function(){window.location.assign('/index.html')})
-             
-  
-
         }
     }
 

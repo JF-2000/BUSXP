@@ -10,10 +10,9 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-  
 
 app.post('/registrar', registrar.registrar)
-app.post('/verificar', verificar.verificarmail)
+app.post('/verificar/verificaruser', verificar.verificarmail)
 app.post('/login',login.login)
 app.get('/usuarios', registrar.usuarios)
 app.get('/ticket/inv/:iduser', user.ticketsdelusuario)

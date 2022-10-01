@@ -1,4 +1,5 @@
 const db = require("../../conection");
+const currency = require('../../helpers/currency');
 const sql = require('mssql');
 const controllers = {};
 
@@ -25,6 +26,21 @@ controllers.pagoticket = async function(req,res){
     } catch (error) {
         console.log(error)
     }
+}
+
+controllers.usatodop = async function(req,res){
+    try {
+        await sql.connect(db)
+        var current = await sql.query('SELECT valor FROM currency where idcurrent = 1')
+        var data = current.recordset[0];
+        res.send(data);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function actcurrency(){
+    await sql.connect(db)
 }
 
 module.exports = controllers;

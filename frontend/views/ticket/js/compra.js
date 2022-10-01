@@ -6,6 +6,16 @@ var vpay = false;
 var total;
 var maxcap = 0;
 var cantpersonas;
+var currence;
+
+async function currency(){
+    var curren = [];
+    await fetch(api+'/ticket/currency')
+    .then(response => response.json())
+    .then((data) => curren = data);
+        currence = curren.valor;
+
+}
 
 async function ticket(){
     if(sessionStorage.getItem('max') == '1'){
@@ -85,7 +95,7 @@ function BPayPal(m) {
     },
 
     createOrder: function(data, actions) {
-        total = Math.round((m*personas.value) / 54);
+        total = Math.round((m*personas.value) / currence);
         vpay = true;
         var data = {
             viaje: viaje,
@@ -174,7 +184,7 @@ function BPayPal(m) {
             personas: personas.value,
             iduser: localStorage.getItem('uid'),
             idpay: datapay.id,
-            total: m*personas.value
+            total: total
         }
 
         var xhr = new XMLHttpRequest();
@@ -183,7 +193,7 @@ function BPayPal(m) {
             
             if (this.readyState == 4 && this.status == 200) {
                 swal("¡Gracias por su compra!","Pago realizado!","success")
-                .then(function(){window.location.assign('/views/ticket/ticket.html')}) 
+                .then(function(){window.location.assign('/views/users/ticketinv.html')}) 
             }
         }
 

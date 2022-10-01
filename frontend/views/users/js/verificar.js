@@ -24,7 +24,7 @@ async function verifemail(){
         alert("Ocurrio un problema, por favor intentelo mas tarde.")
     };
 
-    xhr.open("POST", api+"/verificar");
+    xhr.open("POST", api+"/verificar/verificaruser");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 

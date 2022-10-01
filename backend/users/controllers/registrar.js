@@ -16,8 +16,8 @@ controllers.registrar = async function(req,res){
             var request = new sql.Request();
     
             request
-            .input('nombre',sql.VarChar(50),nombre)
-            .input('email',sql.VarChar(50),email)
+            .input('nombre',sql.VarChar(20),nombre)
+            .input('email',sql.VarChar(40),email)
             .input('password',sql.VarChar(50),password)
             .query(`INSERT INTO usuarios (nombre,email,password) VALUES (@nombre,@email,@password)`,[nombre,email,password])
     

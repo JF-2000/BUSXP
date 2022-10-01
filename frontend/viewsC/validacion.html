@@ -8,36 +8,26 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/fontasome.css">
-    <title>Tickets</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUyIurN72-L5Y6Mg7eb9Nh5i5CIl6DV_OW_eUW5LMjolkMogTk4HmgYqQwsRPCxLx2A1iPBkvyuk_o88"></script>
+    <title>Compra de ticket</title>
 </head>
-<body onload="tickets()">
+<body onload="">
     <header id="head"></header>
     <div class="card-5">
         <div class="card-heading">
-            <div class="title2">Mis tickets</div>
+            <h2 class="title2">Validación de tickets</h2>
         </div>
         <div class="card-body">
-            <div id="ltickets"></div>
+            <video id="qr-video"></video>
+            <div id="ticket"></div>
         </div>
-    </div>
 
-
-    <div class="modal" id="modal">
-        <div class="card-3"> 
-            <div class="card-heading">
-                <label id="TI" class="title2"></label>
-                <span class="close"><i class="fas fa-times"></i></span>
-            </div>
-            <div id="ticketselected"></div>
-            <div id="qr-code"></div><br>
-        </div>
     </div>
 
 </body>
+
 <script src="/js/config.js"></script>
 <script src="/js/headers.js"></script>
-<script src="/js/helpers/modal.js"></script>
-<script src="./js/ticketinv.js"></script>
-<script src="/js/helpers/qr-creator.min.js"></script>
-<script src="/js/controls/controlU.js"></script>
+<script src="/js/controls/controlC.js"></script>
+<script src="./js/validator.js" type="module"></script>
 </html>
