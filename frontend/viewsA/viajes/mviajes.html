@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../style/fontasome.css">
     <title>Modificar Viaje</title>
 </head>
-<body onload="dataviaje()">
+<body onload="crearselect()">
     <header id="head"></header>
     <div class="card-4">
         <div class="card-heading2">
@@ -19,23 +19,15 @@
         <div class="card-body">
             <form>
                 <div class="form-row">
-                    <div class="name">Desde:</div>
+                    <div class="name">Ruta:</div>
                     <div class="value">   
-                        <div class="input-group">
-                            <div>
-                                <input class="input" type="text" maxlength="50" id="rdesde" placeholder="La Vega" required>
-                            </div>
-                        </div>
+                        <select id="rutas"></select>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="name">Hasta:</div>
+                    <div class="name">Horario:</div>
                     <div class="value">   
-                        <div class="input-group">
-                            <div>
-                                <input class="input" type="text" maxlength="50" id="rhasta" placeholder="Santiago" required>
-                            </div>
-                        </div>
+                        <select id="horarios"></select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -54,14 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="name">Hora:</div>
-                    <div class="value">   
-                        <div class="input-group">
-                            <div><input type="time" maxlength="50" id="hora" onkeypress="return valideKey(event);" required></div>
-                        </div>
-                    </div>
-                </div>
+
             </form>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-warning" id="guardar">Modificar Viaje</button>
