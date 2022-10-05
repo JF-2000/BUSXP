@@ -1,12 +1,8 @@
-const url = window.location.search;
-let searchParams = new URLSearchParams(url);
-const iviaje = searchParams.get('r');
-
 var lrutas = document.getElementById('rutas');
 var lhorario = document.getElementById('horarios');
 var capacidad = document.getElementById('capacidad');
 var monto = document.getElementById('monto');
-var titulo = document.getElementById('titulo');
+
 
 
 async function crearselect(){
@@ -32,26 +28,7 @@ async function crearselect(){
             html2 += `<option value="${ruta.idruta}">${ruta.rutadesde}-${ruta.rutahasta}</option>`
         })
         lrutas.innerHTML = html2;
-
-        dataviaje()
 } 
-
-async function dataviaje(){
-    let viaje = [];
-    
-    await fetch(api+`/viajes/admin/${iviaje}`)
-    .then(response => response.json())
-    .then((data) => viaje = data[0])
-        titulo.textContent += viaje.idviaje;
-        capacidad.value = viaje.capacidad;
-        monto.value = viaje.monto;
-        lrutas.value = viaje.idruta
-        lhorario.value = viaje.idhorario
-        
-        
-}
-
-
 
 
 document.getElementById('guardar').addEventListener('click',(e)=>{
@@ -81,7 +58,6 @@ async function guardar(){
 
     var data = {
         idruta: lrutas.value,
-        idviaje: iviaje,
         idhorario: lhorario.value,
         cap: capacidad.value,
         monto: monto.value,
@@ -106,7 +82,7 @@ async function guardar(){
         alert("Ocurrio un problema, por favor intentelo mas tarde.")
     };
 
-    xhr.open("POST", api+"/viajes/mviaje");
+    xhr.open("POST", api+"/viajes/createviaje");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 

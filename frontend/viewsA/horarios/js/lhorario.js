@@ -14,14 +14,13 @@ async function horariosL(){
       `<tr>
         <td>${hora.idhorario}</td>
         <td>${hora.hora}</td>
-
-      </tr>`
-        // if(ruta.activo === 1){
-        //   html += `<td style="width: 50px"><a href="#" onclick="activeruta(${ruta.idruta})" class="btn btn3 btn-danger"><i class="fas fa-trash-alt icofont"></i></a></td>`
-        // }
-        // if(ruta.activo === 0){
-        //   html += `<td style="width: 50px"><a href="#" onclick="activeruta(${ruta.idruta})" class="btn btn3 btn-success"><i class="fas fa-check icofont"></i></a></td>`
-        // }
+        <td style="width: 50px"><a href="/viewsA/rutas/mruta.html?r=${hora.idhorario}" class="btn btn3 btn-warning"><i class="fas fa-edit icofont"></i></a></td>`
+        if(hora.activo === 1){
+          html += `<td style="width: 50px"><a href="#" onclick="activeruta(${hora.idhorario})" class="btn btn3 btn-danger"><i class="fas fa-trash-alt icofont"></i></a></td>`
+        }
+        if(hora.activo === 0){
+          html += `<td style="width: 50px"><a href="#" onclick="activeruta(${hora.idhorario})" class="btn btn3 btn-success"><i class="fas fa-check icofont"></i></a></td>`
+        }
         
       html += `</tr>`
     });

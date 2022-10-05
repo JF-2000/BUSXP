@@ -17,6 +17,7 @@ app.get('/viajes/admin/:idviaje', viajes.viajeidA)
 app.post('/viajes/max', viajes.viajemax)
 app.post('/viajes/res', viajes.viajeres)
 app.post('/viajes/iviaje', viajes.inhabilitarviaje)
+app.post('/viajes/createviaje', viajes.createviajes)
 app.post('/viajes/mviaje', viajes.modificaviaje)
 
 

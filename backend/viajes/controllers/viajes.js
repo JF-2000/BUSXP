@@ -37,7 +37,7 @@ controllers.allviajes = async function(req,res){
         FROM viajes v
         inner join rutas r on r.idruta = v.idruta 
         inner join horarios h on h.idhorario = v.idhorario
-        WHERE v.activo =  1 and CONVERT(time,hora,108) >= CONVERT(time,SYSDATETIME(),108)`)
+        WHERE v.activo =  1 AND CONVERT(time,hora,108) >= CONVERT(time,SYSDATETIME(),108)`)
         var data = viajes.recordset
         res.send(data)
     } catch (error) {
@@ -164,6 +164,39 @@ controllers.inhabilitarviaje= async function(req,res){
       
 }
 
+controllers.createviajes = async function(req,res){
+    try {
+        const {idruta,idhorario,cap,monto} = req.body;
+        await sql.connect(db)
+        if(idruta == "" || idruta == null || idruta == undefined || idruta <= 0 ){
+            return res.send('err')
+        }
+        if(idhorario == "" || idhorario == null || idhorario == undefined || idhorario <= 0 ){
+            return res.send('err')
+        }
+        if(cap == "" || cap == null || cap == undefined || cap <= 0 ){
+            return res.send('err')
+        }
+        if(monto == "" || monto == null || monto == undefined || monto <= 0 ){
+            return res.send('err')
+        }
+        var request = new sql.Request();
+
+        request
+        .input('idruta',sql.Int,idruta)
+        .input('idhorario',sql.Int,idhorario)
+        .input('cap',sql.Int,cap)
+        .input('monto',sql.Money,monto)
+        .query(`INSERT INTO viajes (idruta,idhorario,capacidad,fcapacidad,monto) VALUES (@idruta,@idhorario,@cap,0,@monto)`,[idruta,idhorario,cap,monto])
+        res.sendStatus(200)
+    } catch (error) {
+        console.log(error);
+        res.send('err')
+    }
+      
+}
+
+
 controllers.modificaviaje = async function(req,res){
     try {
         const {idviaje,idruta,idhorario,cap,monto} = req.body;
@@ -198,6 +231,8 @@ controllers.modificaviaje = async function(req,res){
     }
       
 }
+
+
 
 
 

@@ -84,18 +84,18 @@ controllers.modificaruta = async function(req,res){
 
 controllers.inhabilitarhorario = async function(req,res){
     try {
-        const {idruta} = req.body;
-        if(idruta == "" || idruta == null || idruta == undefined || idruta <= 0 ){
+        const {idhorario} = req.body;
+        if(idhorario == "" || idhorario == null || idhorario == undefined || idhorario <= 0 ){
             res.send('err')
         }
         await sql.connect(db)
-        var act = await sql.query(`SELECT activo FROM rutas WHERE idruta = ${idruta}`)
+        var act = await sql.query(`SELECT activo FROM horarios WHERE idhorario = ${idhorario}`)
         if(act.recordset[0].activo === 1){
-            sql.query(`UPDATE rutas SET activo = 0 WHERE idruta = ${idruta}`)
+            sql.query(`UPDATE horarios SET activo = 0 WHERE idhorario = ${idhorario}`)
             res.sendStatus(200)
         }
         if(act.recordset[0].activo === 0){
-            sql.query(`UPDATE rutas SET activo = 1 WHERE idruta = ${idruta}`)
+            sql.query(`UPDATE horarios SET activo = 1 WHERE idhorario = ${idhorario}`)
             res.sendStatus(200)
         }
 
