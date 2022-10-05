@@ -2,27 +2,54 @@ const url = window.location.search;
 let searchParams = new URLSearchParams(url);
 const iviaje = searchParams.get('r');
 
-var rdesde = document.getElementById('rdesde');
-var rhasta = document.getElementById('rhasta');
-var hora = document.getElementById('hora');
+var lrutas = document.getElementById('rutas');
+var lhorario = document.getElementById('horarios');
 var capacidad = document.getElementById('capacidad');
 var monto = document.getElementById('monto');
 var titulo = document.getElementById('titulo');
 
 
+async function crearselect(){
+    var html = '';
+    var html2 = '';
+    let horarios = [];
+    let rutas = [];
+
+    
+    await fetch(api+`/hora/allhorario`)
+    .then(response => response.json())
+    .then((data) => horarios = data)
+        horarios.forEach(horario => {
+            html += `<option value="${horario.idhorario}">${horario.hora}</option>`
+        })
+        lhorario.innerHTML = html;
+        
+
+    await fetch(api+`/ruta/allrutas`)
+    .then(response => response.json())
+    .then((data) => rutas = data)
+        rutas.forEach(ruta => {
+            html2 += `<option value="${ruta.idruta}">${ruta.rutadesde}-${ruta.rutahasta}</option>`
+        })
+        lrutas.innerHTML = html2;
+
+        dataviaje()
+} 
+
 async function dataviaje(){
     let viaje = [];
-    await fetch(api+`/viajes/${iviaje}`)
+    
+    await fetch(api+`/viajes/admin/${iviaje}`)
     .then(response => response.json())
     .then((data) => viaje = data[0])
         titulo.textContent += viaje.idviaje;
-        rdesde.value = viaje.viajedesde;
-        rhasta.value = viaje.viajehasta;
-        hora.value = viaje.hora;
         capacidad.value = viaje.capacidad;
         monto.value = viaje.monto;
         
+        
 }
+
+
 
 
 document.getElementById('guardar').addEventListener('click',(e)=>{
@@ -33,11 +60,11 @@ document.getElementById('guardar').addEventListener('click',(e)=>{
 async function guardar(){
 
 
-    if(rdesde.value == "" || rdesde.value == null || rdesde.value == undefined){
+    if(lrutas.value == "" || lrutas.value == null || lrutas.value == undefined){
         swal("¡Error!","¡Ingrese el lugar de salida de la ruta!","error")
         return false;
     }
-    if(rhasta.value == "" || rhasta.value == null || rhasta.value == undefined){
+    if(lhorario.value == "" || lhorario.value == null || lhorario.value == undefined){
         swal("¡Error!","¡Ingrese el destino de la ruta!","error")
         return false;
     }
@@ -49,20 +76,17 @@ async function guardar(){
         swal("¡Error!","¡Ingrese un monto valido para los viajes en esta ruta!","error")
         return false;
     }
-    if (hora.value == "" || hora.value == null || hora.value == undefined || hora.value > '23:00' || hora.value < '05:00'){
-        swal("¡Error!","¡Ingrese una hora valida para los viajes en esta ruta!","error")
-        return false;
-    }
 
     var data = {
+        idruta: lrutas.value,
         idviaje: iviaje,
-        rdesde: rdesde.value,
-        rhasta: rhasta.value,
-        hora: hora.value,
+        idhorario: lhorario.value,
         cap: capacidad.value,
-        monto: monto.value
+        monto: monto.value,
         
+
     }
+    
 
     var xhr = new XMLHttpRequest();
        

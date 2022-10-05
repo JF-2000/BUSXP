@@ -75,6 +75,23 @@ controllers.viajeid = async function(req,res){
     }
 }
 
+controllers.viajeidA = async function(req,res){
+    try {
+        const idviaje = req.params.idviaje;
+        await sql.connect(db)
+        var viaje = await sql.query(`SELECT idviaje, v.idruta, v.idhorario, rutadesde, rutahasta, v.capacidad, v.fcapacidad, v.monto, CONVERT(varchar,hora,0)hora 
+        FROM viajes v
+        inner join rutas r on r.idruta = v.idruta 
+        inner join horarios h on h.idhorario = v.idhorario
+        WHERE v.idviaje = ${idviaje} `)
+        var data = viaje.recordset
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 controllers.viajemax = async function(req,res){
     try {
         const {viaje,personas,iduser} = req.body;
@@ -104,21 +121,6 @@ controllers.viajemax = async function(req,res){
         console.log(error)
     }
  
-}
-
-controllers.viajeidA = async function(req,res){
-    try {
-        const idviaje = req.params.idviaje;
-        await sql.connect(db)
-        var viaje = await sql.query(`SELECT idviaje, rutadesde, rutahasta, v.capacidad, v.fcapacidad, v.monto, CONVERT(varchar,hora,0)hora 
-        FROM viajes v
-        inner join rutas r on r.idruta = v.idruta 
-        inner join horarios h on h.idhorario = v.idhorario`)
-        var data = viaje.recordset[0]
-        res.send(data)
-    } catch (error) {
-        console.log(error)
-    }
 }
 
 controllers.viajeres = async function(req,res){
@@ -164,15 +166,15 @@ controllers.inhabilitarviaje= async function(req,res){
 
 controllers.modificaviaje = async function(req,res){
     try {
-        const {idviaje,rdesde,rhasta,cap,monto,hora} = req.body;
+        const {idviaje,idruta,idhorario,cap,monto} = req.body;
         await sql.connect(db)
         if(idviaje == "" || idviaje == null || idviaje == undefined || idviaje <= 0 ){
             return res.send('err')
         }
-        if(rdesde == "" || rdesde == null || rdesde == undefined || rdesde <= 0 ){
+        if(idruta == "" || idruta == null || idruta == undefined || idruta <= 0 ){
             return res.send('err')
         }
-        if(rhasta == "" || rhasta == null || rhasta == undefined || rhasta <= 0 ){
+        if(idhorario == "" || idhorario == null || idhorario == undefined || idhorario <= 0 ){
             return res.send('err')
         }
         if(cap == "" || cap == null || cap == undefined || cap <= 0 ){
@@ -181,18 +183,14 @@ controllers.modificaviaje = async function(req,res){
         if(monto == "" || monto == null || monto == undefined || monto <= 0 ){
             return res.send('err')
         }
-        if(hora == "" || hora == null || hora == undefined || hora > '23:00' || hora < '05:00' ){
-            return res.send('err')
-        }
         var request = new sql.Request();
 
         request
-        .input('rdesde',sql.VarChar(50),rdesde)
-        .input('rhasta',sql.VarChar(50),rhasta)
+        .input('idruta',sql.Int,idruta)
+        .input('idhorario',sql.Int,idhorario)
         .input('cap',sql.Int,cap)
         .input('monto',sql.Money,monto)
-        .input('hora',hora)
-        .query(`UPDATE viajes SET rutadesde = @rdesde, rutahasta = @rhasta, capacidad = @cap, monto = @monto WHERE idviaje = ${idviaje}`,[rdesde,rhasta,cap,monto,hora])
+        .query(`UPDATE viajes SET idruta = @idruta, idhorario = @idhorario, capacidad = @cap, monto = @monto WHERE idviaje = ${idviaje}`,[idruta,idhorario,cap,monto])
         res.sendStatus(200)
     } catch (error) {
         console.log(error);
