@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/style/fontasome.css">
     <title>Asignación de viajes</title>
 </head>
-<body onload="viajes()">
+<body onload="lviajes(); lhoras();">
     <header id="head"></header>
     <div> 
         <div class="buscar">
@@ -18,12 +18,17 @@
             <div style="display: inline-block;"><input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre"></div>
             <a class="btn btn-primary hide" id="asiviajes">guardar</a>
         </div>
+        <div class="buscar" style="width: 350px;">
+            <label>Hora:</label>
+            <select id="lhoras"></select>
+        </div>
     </div><br>
     <div class="card-5">
         <div class="card-heading">
             <h2 class="title2">Asignación de viajes</h2>
         </div>
         <div id="lviajes"></div>
+        <div id="loader"></div>
     </div>
 </body>
 <script src="/js/config.js"></script>

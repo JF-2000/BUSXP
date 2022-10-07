@@ -1,6 +1,5 @@
 const db = require("../../conection");
 const sql = require('mssql');
-const { get } = require("../routes/choferes");
 const controllers = {};
 
 controllers.allchoferes = async function(req,res){
@@ -19,7 +18,7 @@ controllers.viajeschoferes = async function(req,res){
     try {
         const idchofer = req.params.idchofer;
         await sql.connect(db)
-        var viajes = await sql.query(`SELECT idviaje, idchofer, rutadesde, rutahasta, v.capacidad, CONVERT(varchar,hora,0)hora 
+        var viajes = await sql.query(`SELECT idviaje, v.idhorario, idchofer, rutadesde, rutahasta, v.capacidad, CONVERT(varchar,hora,0)hora 
         FROM viajes v
         inner join rutas r on r.idruta = v.idruta 
         inner join horarios h on h.idhorario = v.idhorario

@@ -33,7 +33,7 @@ controllers.generarviajes = async function(req ,res){
 controllers.allviajes = async function(req,res){
     try {
         await sql.connect(db)
-        var viajes = await sql.query(`SELECT idviaje, rutadesde, rutahasta, v.capacidad, v.fcapacidad, v.monto, CONVERT(varchar,hora,0)hora 
+        var viajes = await sql.query(`SELECT idviaje, v.idhorario, rutadesde, rutahasta, v.capacidad, v.fcapacidad, v.monto, CONVERT(varchar,hora,0)hora 
         FROM viajes v
         inner join rutas r on r.idruta = v.idruta 
         inner join horarios h on h.idhorario = v.idhorario

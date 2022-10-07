@@ -10,21 +10,24 @@
     <link rel="stylesheet" href="/style/fontasome.css">
     <title>Rutas</title>
 </head>
-<body onload="pviajes()">
+<body onload="pviajes(); lhoras();">
     <header id="head"></header>
     <div> 
         <div class="col-4 buscar">
             <label>Buscar:</label>
             <input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre">
         </div>
-        <button class="btn btn-primary" onclick="prutas()">Generar</button>
+        <div class="col-4 buscar" style="width: 350px;">
+            <label>Hora:</label>
+            <select id="lhoras"></select>
+        </div>
     </div><br>
     <div class="card-5">
         <div class="card-heading">
             <h2 class="title2">Rutas de viajes y horarios</h2>
         </div>
         <div id="trutas"></div>
-
+        <div id="loader"></div>
     </div>
 </body>
 <script src="/js/config.js"></script>

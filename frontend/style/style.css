@@ -568,6 +568,7 @@ h6 {
 }
 
 #loader {
+    display: block;
 	position: relative;
 	left: 50%;
 	top: 50%;

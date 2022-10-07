@@ -13,6 +13,7 @@ controllers.allhorarios = async function(req,res){
     }
       
 }
+
 // controllers.horaioxid = async function(req,res){
 //     try {
 //         const id = req.params.idhorario;

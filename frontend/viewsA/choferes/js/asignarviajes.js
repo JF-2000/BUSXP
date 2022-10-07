@@ -2,19 +2,53 @@ const url = window.location.search;
 let searchParams = new URLSearchParams(url);
 const ichofer = searchParams.get('c');
 
+let viajes = [];
 var arrayviaje = [];
 var basignar = document.getElementById('asiviajes');
 
-async function viajes(){
-    const lviajes = document.getElementById('lviajes')
-    let viajes = [];
+var hora = document.getElementById('lhoras')
+hora.addEventListener('change',renderlista)
+
+async function lhoras(){
+    let horario = [];
     var html = '';
+    await fetch(api+'/hora/allhorario')
+    .then(response => response.json())
+    .then((data) => horario = data);
+        html = '<option value="0">TODOS</option>'
+        horario.forEach(hora =>{
+            html += `<option value="${hora.idhorario}">${hora.hora}</option>`
+        })
+    hora.innerHTML = html;
+}
+
+async function lviajes(){    
     await fetch(api+`/choferes/viajeschofer/${ichofer}`)
     .then(response => response.json())
     .then((data) => viajes = data)
+        setTimeout(renderlista,1000)
+
+}
+
+async function renderlista(){
+    let filtrado=[];
+    switch(hora.value){
+        case '0':
+            filtrado = viajes
+        break
+        case hora.value:
+            filtrado = viajes.filter(function(d){
+                return d.idhorario == hora.value
+            })
+        break
+
+    }
+
+    var html = '';
+    const lviajes = document.getElementById('lviajes')
     html = `<table class="table table-bordered" id="tab">
     <tr><th>ID</th><th>Ruta</th><th>Capacidad</th><th>Hora</th><th>Asignar</th></tr>`
-    viajes.forEach(viaje => {
+    filtrado.forEach(viaje => {
         html += 
         `<tr>
           <td>${viaje.idviaje}</td>
@@ -32,9 +66,12 @@ async function viajes(){
           }
       });
     html += '</table>'
+
+    if(document.getElementById("loader")){
+        document.getElementById("loader").style.display = "none";
+    }
+
     lviajes.innerHTML = html;
-
-
 
     document.querySelectorAll(".bsv").forEach(el => {
         el.addEventListener("click", e => {

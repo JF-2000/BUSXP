@@ -1,18 +1,46 @@
 const trutas = document.getElementById('trutas')
+let viajes = [];
 
-async function prutas(){
-  await fetch(api+'/viajes/allgenerar')
+var hora = document.getElementById('lhoras')
+hora.addEventListener('change',renderviajes)
+
+async function lhoras(){
+  let horario = [];
+  var html = '';
+  await fetch(api+'/hora/allhorario')
+  .then(response => response.json())
+  .then((data) => horario = data);
+      html = '<option value="0">TODOS</option>'
+      horario.forEach(hora =>{
+          html += `<option value="${hora.idhorario}">${hora.hora}</option>`
+      })
+  hora.innerHTML = html;
 }
 
 async function pviajes(){
-  let viajes = [];
-  var html = "";
   await fetch(api+'/viajes/allviajes')
   .then(response => response.json())
   .then((data) => viajes = data);
+    setTimeout(renderviajes,1000)
+}
+
+async function renderviajes(){
+  var filtrado = [];
+  switch(hora.value){
+    case '0':
+        filtrado = viajes
+    break
+    case hora.value:
+        filtrado = viajes.filter(function(d){
+            return d.idhorario == hora.value
+        })
+    break
+  }
+
+  var html = "";
   html = `<table class="table table-bordered" id="tab">
   <tr><th>ID</th><th>Ruta</th><th>Capacidad</th><th>Hora</th><th>Monto</th><th>Comprar</th></tr>`
-  viajes.forEach(viaje => {
+  filtrado.forEach(viaje => {
     html += 
     `<tr>
       <td>${viaje.idviaje}</td>
@@ -25,7 +53,10 @@ async function pviajes(){
   });
   html += `</table>`
 
+  if(document.getElementById("loader")){
+    document.getElementById("loader").style.display = "none";
+  }
+  
   trutas.innerHTML = html;
-        
 }
 
