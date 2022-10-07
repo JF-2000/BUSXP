@@ -51,6 +51,14 @@ if(document.getElementById('head')){
             <nav>
                 <a class="ab" href="/index.html">Inicio</a>
                 <div class="dropdown" data-dropdown>
+                    <a class="dropmenu link" data-dropdown-button>Choferes <i class="fas fa-caret-square-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="/viewsA/choferes/choferes.html">Choferes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dropdown" data-dropdown>
                     <a class="dropmenu link" data-dropdown-button>Rutas <i class="fas fa-caret-square-down"></i></a>
                     <div class="dropdown-menu">
                         <ul>

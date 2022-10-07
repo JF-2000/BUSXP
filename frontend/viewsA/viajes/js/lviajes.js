@@ -1,10 +1,10 @@
 const tviajes = document.getElementById('tviajes')
 
-async function pviajes(){
+async function Gviajes(){
   await fetch(api+'/viajes/allgenerar')
 }
 
-async function pviajes(){
+async function lviajes(){
   let viajes = [];
   var html = "";
   await fetch(api+'/viajes/allviajesA')

@@ -18,6 +18,7 @@ app.use(require('./finanzas/routes/finanzas'));
 app.use(require('./rutas/routes/ruta'));
 app.use(require('./horario/routes/hora'));
 app.use(require('./verificacion_tickets/routes/verificacion'));
+app.use(require('./choferes/routes/choferes'))
 
 
 

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,31 +8,27 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/fontasome.css">
-    <title>Viajes</title>
+    <title>Asignación de viajes</title>
 </head>
-<body onload="lviajes()">
+<body onload="viajes()">
     <header id="head"></header>
     <div> 
-        <div class="col-4 buscar">
+        <div class="buscar">
             <label>Buscar:</label>
-            <input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre"><BR><BR>
-            <button class="btn btn-primary" onclick="Gviajes()">Generar</button>
-            <a class="btn btn-primary" href="./createviaje.html">Crear Viaje</a>
+            <div style="display: inline-block;"><input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre"></div>
+            <a class="btn btn-primary hide" id="asiviajes">guardar</a>
         </div>
-        
     </div><br>
     <div class="card-5">
         <div class="card-heading">
-            <h2 class="title2">Rutas de viajes y horarios</h2>
+            <h2 class="title2">Asignación de viajes</h2>
         </div>
-        <div id="tviajes"></div>
-
+        <div id="lviajes"></div>
     </div>
 </body>
 <script src="/js/config.js"></script>
 <script src="/js/helpers/buscar.js"></script>
-<script src="../../js/headers.js"></script>
-<script src="./js/lviajes.js"></script>
+<script src="/js/headers.js"></script>
+<script src="./js/asignarviajes.js"></script>
 <script src="/js/controls/controlA.js"></script>
-<script src="./js/activeviaje.js"></script>
 </html>
