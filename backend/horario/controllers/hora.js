@@ -5,7 +5,7 @@ const controllers = {};
 controllers.allhorarios = async function(req,res){
     try {
         await sql.connect(db)
-        var horarios = await sql.query("SELECT idhorario, CONVERT(varchar,hora,0)hora FROM horarios")
+        var horarios = await sql.query("SELECT idhorario, CONVERT(varchar,hora,0)hora , activo FROM horarios")
         var data = horarios.recordset
         res.send(data)
     } catch (error) {
@@ -25,6 +25,20 @@ controllers.allhorarios = async function(req,res){
 //         console.log(error);
 //     }
 // }
+
+
+controllers.horarioidA = async function(req,res){
+    try {
+        const idhorario = req.params.idhorario;
+        await sql.connect(db)
+        var horario = await sql.query(`SELECT idhorario, CONVERT(varchar,hora,8)hora FROM horarios`)
+        var data = horario.recordset
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 controllers.creahorario = async function(req,res){
     try {
@@ -48,33 +62,21 @@ controllers.creahorario = async function(req,res){
       
 }
 
-controllers.modificaruta = async function(req,res){
+controllers.modificahorario = async function(req,res){
     try {
-        const {idruta,rdesde,rhasta,cap,monto} = req.body;
+        const {idhorario,hora} = req.body;
         await sql.connect(db)
-        if(idruta == "" || idruta == null || idruta == undefined || idruta <= 0 ){
+        if(idhorario == "" || idhorario == null || idhorario == undefined || idhorario <= 0 ){
             return res.send('err')
         }
-        if(rdesde == "" || rdesde == null || rdesde == undefined || rdesde <= 0 ){
-            return res.send('err')
-        }
-        if(rhasta == "" || rhasta == null || rhasta == undefined || rhasta <= 0 ){
-            return res.send('err')
-        }
-        if(cap == "" || cap == null || cap == undefined || cap <= 0 ){
-            return res.send('err')
-        }
-        if(monto == "" || monto == null || monto == undefined || monto <= 0 ){
+        if(hora == "" || hora == null || hora == undefined || hora <= 0 ){
             return res.send('err')
         }
         var request = new sql.Request();
 
         request
-        .input('rdesde',sql.VarChar(50),rdesde)
-        .input('rhasta',sql.VarChar(50),rhasta)
-        .input('cap',sql.Int,cap)
-        .input('monto',sql.Money,monto)
-        .query(`UPDATE rutas SET rutadesde = @rdesde, rutahasta = @rhasta, capacidad = @cap, monto = @monto WHERE idruta = ${idruta}`,[rdesde,rhasta,cap,monto])
+        .input('hora',sql.VarChar(50),hora)
+        .query(`UPDATE horarios SET hora = @hora WHERE idhorario = ${idhorario}`,[hora])
         res.sendStatus(200)
     } catch (error) {
         console.log(error);
@@ -105,6 +107,5 @@ controllers.inhabilitarhorario = async function(req,res){
     }
       
 }
-
 
 module.exports = controllers;
