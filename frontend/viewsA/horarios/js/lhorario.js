@@ -23,8 +23,6 @@ async function horariosL(){
         }
         
       html += `</tr>`
-
-      console.log(hora)
     });
     html += `</table>`
     

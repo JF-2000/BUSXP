@@ -397,7 +397,7 @@ input {
     box-shadow: none;
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
-
+    
     font-weight: bold;
     background: #cee5ff;
     line-height: 50px;
@@ -407,6 +407,7 @@ input {
     padding: 0 22px;
     font-size: 22px;
     color: rgb(0, 0, 0);
+    
 }
 
 /*SELECT*/
@@ -417,19 +418,34 @@ select {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    width: 80%;
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
-
+    text-align: center;
     font-weight: bold;
     background: #cee5ff;
-    line-height: 50px;
+    height: 50px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    padding: 0 22px;
     font-size: 22px;
     color: rgb(0, 0, 0);
 }
+
+.input-group-desc,
+.input-group-desc {
+    margin-bottom: 0;
+}
+
+.label--desc{
+    position: relative;
+    text-transform: capitalize;
+    display: block;
+    color: black;
+    font-size: 20px;
+    margin: 0;
+    margin-top: 7px;
+    left: 0;
+  }
 
 /* H */
 h1 {

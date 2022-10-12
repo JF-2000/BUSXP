@@ -4,6 +4,7 @@ var app = express();
 
 
 app.get('/choferes/allchoferes', choferes.allchoferes)
+app.get('/choferes/uchoferes', choferes.uchoferes)
 app.get('/choferes/viajeschofer/:idchofer', choferes.viajeschoferes)
 app.post('/choferes/asignarviaje', choferes.asignarviajes)
 

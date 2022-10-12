@@ -23,7 +23,6 @@ async function crearselect(){
             html += `<option value="${horario.idhorario}">${horario.hora}</option>`
         })
         lhorario.innerHTML = html;
-        
 
     await fetch(api+`/ruta/allrutas`)
     .then(response => response.json())
