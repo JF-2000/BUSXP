@@ -14,8 +14,6 @@ controllers.allchoferes = async function(req,res){
       
 }
 
-
-
 controllers.uchoferes = async function(req,res){
     try {
         await sql.connect(db)
@@ -115,5 +113,46 @@ controllers.asignarviajes = async function(req,res){
         console.error(error)
     }
 }
+
+controllers.misviajes = async function(req,res){
+    try {
+        const idchofer = req.params.idchofer;
+        await sql.connect(db)
+        var viajes = await sql.query(`SELECT idviaje, v.monto, rutadesde, rutahasta, v.capacidad, v.fcapacidad, CONVERT(varchar,hora,0)hora 
+        FROM viajes v
+        inner join rutas r on r.idruta = v.idruta 
+        inner join horarios h on h.idhorario = v.idhorario
+        inner join choferes c on c.idchofer = v.idchofer
+        WHERE v.activo = 1 and iduser = ${idchofer}`)
+        var data = viajes.recordset
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+controllers.ubicacion = async function(req,res){
+    try {
+        const {id,latitude, longitude} = req.body;
+
+        await sql.connect(db)
+        var verificarid = await sql.query(`select cc.idchofer 
+        from coordenadas_choferes cc inner join choferes c on c.idchofer = cc.idchofer 
+        where iduser = ${id}`)
+        return console.log(verificarid.recordset)
+        
+        await sql.connect(db)
+        var request = new sql.Request();
+        request
+        .input('iduser',sql.Int,id)
+        .input('latitude',sql.Float,latitude)
+        .input('longitude',sql.Float,longitude)
+        .query(`INSERT INTO usuarios (nombre,email,password) VALUES (@nombre,@email,@password)`,[nombre,email,password])
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = controllers;

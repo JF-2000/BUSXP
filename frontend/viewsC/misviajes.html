@@ -10,29 +10,25 @@
     <link rel="stylesheet" href="/style/fontasome.css">
     <title>Rutas</title>
 </head>
-<body onload="pviajes(); lhoras();">
+<body onload="mrutas();">
     <header id="head"></header>
     <div> 
         <div class="col-4 buscar">
             <label>Buscar:</label>
             <input type="search" onkeyup="filtrartabla(filtnombre,tab);" id="filtnombre">
         </div>
-        <div class="col-4 buscar" style="width: 350px;">
-            <label>Hora:</label>
-            <select id="lhoras"></select>
-        </div>
     </div><br>
     <div class="card-5">
         <div class="card-heading">
-            <h2 class="title2">Rutas de viajes y horarios</h2>
+            <h2 class="title2">Mis viajes</h2>
         </div>
-        <div id="trutas"></div><br><br><br>
-        <div id="loader"></div>
+        <div id="lviajes"></div>
     </div>
 </body>
 <script src="/js/config.js"></script>
 <script src="/js/helpers/buscar.js"></script>
 <script src="../../js/headers.js"></script>
-<script src="./js/rutas.js"></script>
-<script src="/js/controls/controlU.js"></script>
+<script src="./js/misviajes.js"></script>
+<script src="./js/locate.js" type="module"></script>
+<script src="/js/controls/controlC.js"></script>
 </html>

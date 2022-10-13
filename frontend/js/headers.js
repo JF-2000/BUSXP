@@ -89,7 +89,7 @@ if(document.getElementById('head')){
         <div class="wrapper">    
             <div class="logo">BUSXP</div>
             <nav>
-                <a class="ab" href="/index.html">Inicio</a>
+                <a class="ab" href="/viewsC//misviajes.html">Mis viajes</a>
                 <a class="ab" href="/viewsC/validacion.html">Verificar tickets</a>
                 <div class="dropdown" data-dropdown>
                     <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>

@@ -55,11 +55,11 @@ async function renderlista(){
           <td>${viaje.rutadesde} - ${viaje.rutahasta}</td>
           <td>${viaje.capacidad}</td>
           <td>${viaje.hora}</td>`
-          if(viaje.idchofer != ichofer){
+          if(viaje.idchofer != ichofer && arrayviaje.includes(viaje.idviaje) == false){
             html +=`<td style="width: 20px;"><i onclick="asignar(${viaje.idviaje})" class="bsv btn btn-success fas fa-user-plus"></i></td>
             </tr>`
           }
-          if(viaje.idchofer == ichofer){
+          if(viaje.idchofer == ichofer || arrayviaje.includes(viaje.idviaje) == true){
             html +=`<td style="width: 20px"><i onclick="asignar(${viaje.idviaje})" class="bsv btn btn-danger fas fa-user-minus"></i></td>
             </tr>`
             arrayviaje.push(viaje.idviaje)
