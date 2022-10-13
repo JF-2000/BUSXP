@@ -21,16 +21,59 @@
                 <div class="form-row">
                     <div class="name">Email:</div>
                     <div class="value">   
-                        <select id="emailc"></select>
+                        <select id="email"></select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="name">Nombre:</div>
                     <div class="value">   
-                        <input readonly class="label--desc" id="nombre"></input>
+                        <div class="input-group">
+                            <div class="col-12">
+                                <input class="input" type="text" maxlength="20" id="nombre" placeholder="Cristobal" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
+                <div class="form-row">
+                    <div class="name">Apellido:</div>
+                    <div class="value">   
+                        <div class="input-group">
+                            <div class="col-12">
+                                <input class="input" type="text" maxlength="20" id="apellido" placeholder="Soria" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">Direccion:</div>
+                    <div class="value">   
+                        <div class="input-group">
+                            <div class="col-12">
+                                <input class="input" type="text" maxlength="20" id="direccion" placeholder="Los Pomos C\1" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">Cedula</div>
+                    <div class="value">   
+                        <div class="input-group">
+                            <div class="col-12">
+                                <input class="input" type="text" maxlength="20" id="cedula" placeholder="000-0000000-0" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">Telefono:</div>
+                    <div class="value">   
+                        <div class="input-group">
+                            <div class="col-12">
+                                <input class="input" type="text" maxlength="20" id="telefono" placeholder="888-888-8888" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-primary" id="guardar">Registrar</button>

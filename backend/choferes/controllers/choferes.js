@@ -29,32 +29,45 @@ controllers.uchoferes = async function(req,res){
       
 }
 
+
 controllers.registrarchofer = async function(req,res){
     try {
-        const {nombre,email,password} = req.body;
-
+        const {iduser,nombre,apellido,direccion,cedula,telefono} = req.body;
         await sql.connect(db)
-        var verif = await sql.query(`select email from usuarios where email = '${email}'`)
-    
-        if(verif.recordset.length > 0){
-            return res.send('errmail')
-        }else{
-            var request = new sql.Request();
-    
-            request
-            .input('nombre',sql.VarChar(20),nombre)
-            .input('email',sql.VarChar(40),email)
-            .input('password',sql.VarChar(50),password)
-            .query(`INSERT INTO usuarios (nombre,email,password) VALUES (@nombre,@email,@password)`,[nombre,email,password])
-    
-            var iduser = await sql.query(`SELECT iduser from usuarios where email = '${email}'`)
-            const id = iduser.recordset[0].iduser
-            await mail.verificaremail(email,nombre,id)
-            res.sendStatus(200)
+        if(iduser == "" || iduser == null || iduser == undefined || iduser <= 0 ){
+            return res.send('err')
         }
-    } catch (error) {
-        console.log(error)
-    }
+        if(nombre == "" || nombre == null || nombre == undefined || nombre <= 0 ){
+            return res.send('err')
+        }
+        if(apellido == "" || apellido == null || apellido == undefined || apellido <= 0 ){
+            return res.send('err')
+        }
+        if(direccion == "" || direccion == null || direccion == undefined || direccion <= 0 ){
+            return res.send('err')
+        }
+        if(cedula == "" || cedula == null || cedula == undefined || cedula <= 0 ){
+            return res.send('err')
+        }
+        if(telefono == "" || telefono == null || telefono == undefined || telefono <= 0 ){
+            return res.send('err')
+        }
+        
+        var request = new sql.Request();
+    
+        request
+        .input('iduser',sql.VarChar(40),iduser)
+        .input('nombre',sql.VarChar(40),nombre)
+        .input('apellido',sql.VarChar(50),apellido)
+        .input('direccion',sql.VarChar(50),direccion)
+        .input('cedula',sql.VarChar(50),cedula)
+        .input('telefono',sql.VarChar(50),telefono)
+        .query(`INSERT INTO choferes (iduser,nombre,apellido,direccion,identificacion,telefono) VALUES (@iduser,@nombre,@apellido,@direccion,@cedula,@telefono)`,[iduser,nombre,apellido,direccion,cedula,telefono])
+        res.sendStatus(200)
+        }catch (error) {
+            console.log(error);
+            res.send('err')
+        }
 }
 
 

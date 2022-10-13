@@ -180,6 +180,7 @@ controllers.createviajes = async function(req,res){
         if(monto == "" || monto == null || monto == undefined || monto <= 0 ){
             return res.send('err')
         }
+        
         var request = new sql.Request();
 
         request
