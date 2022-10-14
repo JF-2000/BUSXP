@@ -205,9 +205,21 @@ controllers.ubicacion = async function(req,res){
             .input('idchofer',sql.Int,idchofer)
             .input('latitude',sql.Float,latitude)
             .input('longitude',sql.Float,longitude)
-            .query(`UPDATE coordenadas_choferes SET latitude = @latitude, longitude = @longitude`,[latitude,longitude])
+            .query(`UPDATE coordenadas_choferes SET latitude = @latitude, longitude = @longitude WHERE idchofer = ${idchofer}`,[latitude,longitude])
             return res.sendStatus(200)
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+controllers.coordschoferes = async function(req,res){
+    try {
+        await sql.connect(db)
+        var coords = await sql.query(`SELECT cc.idchofer, nombre, apellido, telefono, latitude, longitude
+        FROM coordenadas_choferes cc inner join choferes c on c.idchofer = cc.idchofer`)
+        var data = coords.recordset
+        res.send(data)
     } catch (error) {
         console.log(error)
     }
