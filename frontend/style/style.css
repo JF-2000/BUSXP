@@ -734,3 +734,9 @@ h6 {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+/* Mapa */
+#map {
+	height: 500px;
+	width: 100%;
+}

@@ -8,27 +8,16 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/fontasome.css">
-    <script src="https://www.paypal.com/sdk/js?client-id=AUyIurN72-L5Y6Mg7eb9Nh5i5CIl6DV_OW_eUW5LMjolkMogTk4HmgYqQwsRPCxLx2A1iPBkvyuk_o88"></script>
-    <title>Compra de ticket</title>
+    <title>Choferes</title>
 </head>
 <body onload="">
     <header id="head"></header>
-    <div class="card-5">
-        <div class="card-heading">
-            <h2 class="title2">Validación de tickets</h2>
-        </div>
-        <div class="card-body">
-            <video id="qr-video"></video>
-            <div id="ticket"></div>
-        </div>
-
-    </div>
-
+    <div id="map"></div>
 </body>
 
 <script src="/js/config.js"></script>
 <script src="/js/headers.js"></script>
-<script src="/js/controls/controlC.js"></script>
-<script src="./js/validator.js" type="module"></script>
-<script src="./js/locate.js"></script>
+<script src="./js/ubichoferes.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
+<script src="/js/controls/controlA.js"></script>
 </html>

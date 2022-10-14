@@ -55,6 +55,7 @@ if(document.getElementById('head')){
                     <div class="dropdown-menu">
                         <ul>
                             <li><a href="/viewsA/choferes/choferes.html">Choferes</a></li>
+                            <li><a href="/viewsA/choferes/ubichoferes.html">Ubicación choferes</a></li>
                         </ul>
                     </div>
                 </div>

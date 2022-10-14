@@ -16,7 +16,8 @@ const funcionInit = () => {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 if(xhr.response == "err"){
-                    return swal("¡Error!","Al guardar las coordenadas","error") 
+                    clearInterval(getubicacion);
+                    return swal("¡Error!","Se ha desactivado la ubicación","error") 
                 }
             }
         }
@@ -41,11 +42,11 @@ const funcionInit = () => {
 		maximumAge: 0, // No queremos caché
 		timeout: 2000 // Esperar solo 2 segundos
 	};
-	// Solicitar
 
+	// Solicitar
 	navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
 
 
 };
-funcionInit()
-// setInterval(funcionInit,15000) 
+
+const getubicacion = setInterval(funcionInit,15000) 

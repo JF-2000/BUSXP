@@ -5,7 +5,8 @@ const controllers = {};
 controllers.allchoferes = async function(req,res){
     try {
         await sql.connect(db)
-        var choferes = await sql.query("SELECT idchofer, nombre, apellido, direccion, identificacion, telefono FROM choferes")
+        var choferes = await sql.query(`SELECT idchofer, nombre, apellido, direccion, identificacion, telefono 
+        FROM choferes WHERE activo = 1 `)
         var data = choferes.recordset
         res.send(data)
     } catch (error) {
@@ -16,13 +17,48 @@ controllers.allchoferes = async function(req,res){
 
 controllers.uchoferes = async function(req,res){
     try {
+        var LTAN = [];
+        var LCHO = [];
+        var LCHO2 = [];
+        var filtro = [];
+        var data = [];
         await sql.connect(db)
-        var choferes = await sql.query(`SELECT u.iduser, u.nombre, email, activo 
-        FROM usuarios u 
-		inner join choferes c on c.iduser != u.iduser
-        WHERE auth = 3 and activo = 1`)
-        var data = choferes.recordset
-        res.send(data)
+        var verifchofer = await sql.query(`SELECT iduser from choferes`)
+        verifchofer.recordset.forEach(verif => {
+            LTAN.push(verif.iduser)
+        })
+
+        var choferes = await sql.query(`select iduser, email from usuarios where auth = 3`)
+        choferes.recordset.forEach(cho => {
+            LCHO.push(cho.iduser)
+            LCHO2.push(cho.iduser,cho.email)
+        })
+
+        for(x=0; x < LCHO.length; x++){
+            if(LTAN.includes(LCHO[x]) == true){
+                continue
+            }
+            if(LTAN.includes(LCHO[x]) == false){
+                if(filtro.includes[LCHO[x]] == true){
+                    continue
+                }else{
+                    filtro.push(LCHO[x])
+                }
+            }
+        }
+
+        filtro.forEach(filt =>{
+            var indx = LCHO2.indexOf(filt)
+            data.push({
+                iduser: LCHO2[indx], 
+                email:LCHO2[indx+1]
+            })
+        })
+
+        console.log(data)
+        res.sendStatus(200)
+        
+
     } catch (error) {
         console.log(error);
     }
@@ -146,22 +182,32 @@ controllers.misviajes = async function(req,res){
 
 controllers.ubicacion = async function(req,res){
     try {
-        const {id,latitude, longitude} = req.body;
-
+        const {id,latitude, longitude} = req.body;    
         await sql.connect(db)
-        var verificarid = await sql.query(`select cc.idchofer 
-        from coordenadas_choferes cc inner join choferes c on c.idchofer = cc.idchofer 
-        where iduser = ${id}`)
-        return console.log(verificarid.recordset)
-        
-        await sql.connect(db)
-        var request = new sql.Request();
-        request
-        .input('iduser',sql.Int,id)
-        .input('latitude',sql.Float,latitude)
-        .input('longitude',sql.Float,longitude)
-        .query(`INSERT INTO usuarios (nombre,email,password) VALUES (@nombre,@email,@password)`,[nombre,email,password])
-        res.send(data)
+        var reidchofer = await sql.query(`select idchofer from choferes where iduser = ${id} and activo = 1`)
+        if(reidchofer.recordset.length <= 0 ){
+            return res.send('err')
+        }
+        var idchofer = reidchofer.recordset[0].idchofer
+        var verificarid = await sql.query(`select idchofer 
+        from coordenadas_choferes where idchofer = ${idchofer}`)
+        if(verificarid.recordset.length <= 0){
+            var request = new sql.Request();
+            request
+            .input('idchofer',sql.Int,idchofer)
+            .input('latitude',sql.Float,latitude)
+            .input('longitude',sql.Float,longitude)
+            .query(`INSERT INTO coordenadas_choferes (idchofer,latitude,longitude) VALUES (@idchofer,@latitude,@longitude)`,[idchofer,latitude,longitude])
+            return res.sendStatus(200)
+        }else if(verificarid.recordset.length > 0){
+            var request = new sql.Request();
+            request
+            .input('idchofer',sql.Int,idchofer)
+            .input('latitude',sql.Float,latitude)
+            .input('longitude',sql.Float,longitude)
+            .query(`UPDATE coordenadas_choferes SET latitude = @latitude, longitude = @longitude`,[latitude,longitude])
+            return res.sendStatus(200)
+        }
     } catch (error) {
         console.log(error)
     }
