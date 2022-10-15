@@ -56,7 +56,7 @@ controllers.uchoferes = async function(req,res){
         })
 
         console.log(data)
-        res.sendStatus(200)
+        res.send(data)
         
 
     } catch (error) {
