@@ -7,8 +7,8 @@ if(document.getElementById('head')){
         <nav>
             <a class="ab" href="/index.html">Inicio</a>
             <a class="ab" href="/views/rutas/viajes.html">Rutas</a>
-            <a class="ab" href="">Contactos</a>
-            <a class="ab" href="">Nosotros</a>
+            <a class="ab" href="/contacto.html">Contactos</a>
+            <a class="ab" href="/nosotros.html">Nosotros</a>
             <a class="ab" href="/views/users/login.html">Iniciar sesión</a>
 
         </nav>
@@ -24,8 +24,8 @@ if(document.getElementById('head')){
             <nav>
                 <a class="ab" href="/index.html">Inicio</a>
                 <a class="ab" href="/views/rutas/rutas.html">Rutas</a>
-                <a class="ab" href="">Contactos</a>
-                <a class="ab" href="">Nosotros</a>
+                <a class="ab" href="/contacto.html">Contactos</a>
+                <a class="ab" href="/nosotros.html">Nosotros</a>
                 <div class="dropdown" data-dropdown>
                     <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
                     <div class="dropdown-menu">

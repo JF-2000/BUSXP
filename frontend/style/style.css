@@ -610,7 +610,6 @@ h6 {
 }
 
 #loader {
-    display: block;
 	position: relative;
 	left: 50%;
 	top: 50%;
@@ -618,7 +617,7 @@ h6 {
 	width: 120px;
 	height: 120px;
 	margin: -76px 0 0 -76px;
-	border: 16px solid #cbcbcb;
+	border: 16px solid #e4e1e1;
 	border-radius: 50%;
 	border-top: 16px solid #007bff;
 	-webkit-animation: spin 2s linear infinite;
