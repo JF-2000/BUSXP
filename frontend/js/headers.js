@@ -10,7 +10,6 @@ if(document.getElementById('head')){
             <a class="ab" href="/contacto.html">Contactos</a>
             <a class="ab" href="/nosotros.html">Nosotros</a>
             <a class="ab" href="/views/users/login.html">Iniciar sesión</a>
-
         </nav>
     </div>
     `

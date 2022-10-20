@@ -52,11 +52,11 @@ async function renderviajes(){
     </tr>`
   });
   html += `</table>`
+  
+  trutas.innerHTML = html;
 
   if(document.getElementById("loader")){
     document.getElementById("loader").style.display = "none";
   }
-  
-  trutas.innerHTML = html;
 }
 

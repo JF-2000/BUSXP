@@ -1,12 +1,13 @@
 const db = require("../../conection");
 const sql = require('mssql');
 const mail = require('../../helpers/mailer')
+const crypt = require('../../helpers/encript')
 const controllers = {};
 
 controllers.registrar = async function(req,res){
     try {
         const {nombre,email,password} = req.body;
-
+        const passworden = await crypt.encriptar(password)
         await sql.connect(db)
         var verif = await sql.query(`select email from usuarios where email = '${email}'`)
     
@@ -18,8 +19,8 @@ controllers.registrar = async function(req,res){
             request
             .input('nombre',sql.VarChar(20),nombre)
             .input('email',sql.VarChar(40),email)
-            .input('password',sql.VarChar(50),password)
-            .query(`INSERT INTO usuarios (nombre,email,password) VALUES (@nombre,@email,@password)`,[nombre,email,password])
+            .input('password',sql.VarChar(50),passworden)
+            .query(`INSERT INTO usuarios (nombre,email,password) VALUES (@nombre,@email,@password)`,[nombre,email,passworden])
     
             var iduser = await sql.query(`SELECT iduser from usuarios where email = '${email}'`)
             const id = iduser.recordset[0].iduser

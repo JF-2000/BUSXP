@@ -184,7 +184,7 @@ function BPayPal(m) {
             personas: personas.value,
             iduser: localStorage.getItem('uid'),
             idpay: datapay.id,
-            total: total
+            total: m*personas.value
         }
 
         var xhr = new XMLHttpRequest();
