@@ -24,6 +24,7 @@ header{
     background: #007bff;
     display: inline-block;
     width: 100%;
+    z-index: 99997;
     margin-bottom: 20px;
 }
 
@@ -92,6 +93,7 @@ header nav .ab2:hover{
 
 header nav .dropmenu{
     text-decoration: none;
+    z-index: 99998;
     display: inline-block;
     padding: 10px 20px;
     line-height: normal;
@@ -661,6 +663,7 @@ h6 {
 .dropdown-menu{
     display: flex;
     position: absolute;
+    z-index: 99999;
     right: 0;
     top: calc(100% + .25rem);
     background-color: white;
@@ -766,9 +769,13 @@ h6 {
     margin: 10px;
 }
 
-/* Paddin */
+/* Margin */
 
 .marLR20{
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.mar10{
+    margin: 10px;
 }

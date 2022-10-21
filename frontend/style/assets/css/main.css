@@ -301,7 +301,7 @@ section {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-.header {
+/* .header {
   transition: all 0.5s;
   z-index: 997;
   padding: 30px 0;
@@ -324,12 +324,12 @@ section {
   font-weight: 700;
   color: #fff;
   font-family: var(--font-primary);
-}
+} */
 
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
-@media (min-width: 1280px) {
+/* @media (min-width: 1280px) {
   .navbar {
     padding: 0;
   }
@@ -463,7 +463,7 @@ section {
   .mobile-nav-hide {
     display: none;
   }
-}
+} */
 
 /*--------------------------------------------------------------
 # Mobile Navigation

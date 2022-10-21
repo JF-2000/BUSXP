@@ -37,7 +37,7 @@ controllers.allviajes = async function(req,res){
         FROM viajes v
         inner join rutas r on r.idruta = v.idruta 
         inner join horarios h on h.idhorario = v.idhorario
-        WHERE v.activo =  1 AND CONVERT(time,hora,108) >= CONVERT(time,SYSDATETIME(),108)`)
+        WHERE v.activo =  1 AND CONVERT(time,hora,108) >= CONVERT(time,SYSDATETIME(),108) AND idchofer > 0`)
         var data = viajes.recordset
         res.send(data)
     } catch (error) {

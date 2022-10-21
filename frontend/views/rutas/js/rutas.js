@@ -7,7 +7,7 @@ hora.addEventListener('change',renderviajes)
 async function lhoras(){
   let horario = [];
   var html = '';
-  await fetch(api+'/hora/allhorario')
+  await fetch(api+'/hora/horariolist')
   .then(response => response.json())
   .then((data) => horario = data);
       html = '<option value="0">TODOS</option>'

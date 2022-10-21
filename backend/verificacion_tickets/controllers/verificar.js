@@ -20,7 +20,7 @@ controllers.verif = async function(req,res){
         LTRIM(RIGHT(CONVERT(VARCHAR(20), fecha, 100), 7))horac,total, CONVERT(varchar,hora,0)horat, t.activo
         from tickets t left outer join viajes v on v.idviaje = t.idviaje inner join horarios h on h.idhorario = v.idhorario
         inner join rutas r on r.idruta = v.idruta
-        where idticket = ${id} and FORMAT(fecha,'dd-MM-yyyy') >= FORMAT(GETDATE(),'dd-MM-yyyy')`)
+        where idticket = ${id} and FORMAT(fecha,'dd-MM-yyyy') >= FORMAT(GETDATE(),'dd-MM-yyyy') and convert(time, DATEADD(minute,20,hora),108) >= CONVERT(time,SYSDATETIME(),108)`)
         if(ticket.recordset.length <= 0){
             res.send('noexist')
         }

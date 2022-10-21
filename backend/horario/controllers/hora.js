@@ -14,6 +14,19 @@ controllers.allhorarios = async function(req,res){
       
 }
 
+controllers.horariolist = async function(req,res){
+    try {
+        await sql.connect(db)
+        var horarios = await sql.query(`SELECT idhorario, CONVERT(varchar,hora,0)hora FROM horarios
+        WHERE CONVERT(time,hora,108) >= CONVERT(time,SYSDATETIME(),108) and activo = 1
+        ORDER BY CONVERT(time,hora,108)`)
+        var data = horarios.recordset
+        res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // controllers.horaioxid = async function(req,res){
 //     try {
 //         const id = req.params.idhorario;

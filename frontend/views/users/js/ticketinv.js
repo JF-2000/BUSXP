@@ -15,14 +15,19 @@ async function tickets(){
         `<div class="card-2 col-4"> 
             <div class="card-heading"><label class="title3">Tickets #${ticket.idticket}</label></div>
             <div style="padding: 15px;">
+               <label class="titulo">Usuario: </label><br>
+               <label>${ticket.nombre}</label><br>
                <label class="titulo">Comprado el: </label><br>
                <label>${ticket.fechac} | ${ticket.horac}</label><br>
                <label class="titulo">Ruta: </label><br>
                <label>${ticket.rutadesde} - ${ticket.rutahasta}</label><br>
                <label class="titulo">Hora: </label><br><label>${ticket.horat}</label><br>
                <label class="titulo">Personas: </label><br><label>${ticket.personas}</label><br>
-               <label class="titulo">Total: </label><br><label>RD$${ticket.total}</label><br><br>
-               <button class="btn btn-primary" id="btnmodal" onclick="(qrticket(${tiks}))">Seleccionar</button><br>
+               <label class="titulo">Total: </label><br><label>RD$${ticket.total}</label><br><br>`
+               if(ticket.personas > 1){
+                html+=`<button class="btn btn-warning mar10" onclick="(compartir(${ticket.idticket}))">Compartir</button>`
+               }
+        html+=`<button class="btn btn-primary" id="btnmodal" onclick="(qrticket(${tiks}))">Seleccionar</button><br>
             </div>
         </div>`
         arraytickets.push([ticket.idticket,ticket.fechac,ticket.horac,ticket.rutadesde,ticket.rutahasta,ticket.horat,ticket.personas,ticket.total,tickets.vkeys[tiks]])
@@ -31,6 +36,9 @@ async function tickets(){
     html += `</div>`
 
     ltickets.innerHTML = html;
+    if(document.getElementById("loader")){
+        document.getElementById("loader").style.display = "none";
+    }
         
 }
 
@@ -64,4 +72,48 @@ async function qrticket(tickt){
             size: 500 // in pixels
         }, document.querySelector('#qr-code'));
     }
+}
+
+async function compartir(idt){
+    swal("Si compartes este ticket se le sustraerá una persona para crear un ticket nuevo, deseas compartir?", {
+        buttons: {
+          cancel: "NO",
+          catch: {
+            text: "COMPARTIR",
+            value: "share",
+          }
+        },
+      })
+      .then((value) => {
+        switch (value) {
+            case "share":
+                var data = {
+                    idticket: idt
+                }
+            
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        if(xhr.response == "err"){
+                            return swal("¡Error!","Este ticket no se puede compartir","error") 
+                        }
+                        window.location.reload();
+                    }
+                }
+            
+                xhr.onerror = function(){
+                    alert("Ocurrio un problema, por favor intentelo mas tarde.")
+                };
+            
+                xhr.open("POST", api+"/ticket/compartir");
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+            
+                xhr.send(JSON.stringify(data));
+            break;
+       
+          default:
+            return
+        }
+      });
 }
