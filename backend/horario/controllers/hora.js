@@ -44,8 +44,8 @@ controllers.horarioidA = async function(req,res){
     try {
         const idhorario = req.params.idhorario;
         await sql.connect(db)
-        var horario = await sql.query(`SELECT idhorario, CONVERT(varchar,hora,8)hora FROM horarios`)
-        var data = horario.recordset
+        var hora = await sql.query(`SELECT idhorario, CONVERT(varchar,hora,0)hora FROM horarios WHERE idhorario = ${idhorario}`)
+        var data = hora.recordset
         res.send(data)
     } catch (error) {
         console.log(error)

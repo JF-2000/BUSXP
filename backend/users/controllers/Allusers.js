@@ -6,7 +6,7 @@ const controllers = {};
 controllers.Allusers = async function(req,res){
     try {
         await sql.connect(db)
-        var usuarios = await sql.query(`SELECT * FROM usuarios`)
+        var usuarios = await sql.query(`SELECT * FROM usuarios WHERE auth BETWEEN 2 and 4`)
         var data = usuarios.recordset
         res.send(data)
     } catch (error) {
@@ -35,6 +35,19 @@ controllers.inhabilitaruser = async function(req,res){
     }
       
 }
+
+controllers.userid = async function(req,res){
+    try {
+        const iduser = req.params.iduser;
+        await sql.connect(db)
+        var usuario = await sql.query(`SELECT iduser, nombre, email, auth FROM usuarios WHERE iduser = ${iduser} `)
+        var data = usuario.recordset[0]
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 module.exports = controllers;

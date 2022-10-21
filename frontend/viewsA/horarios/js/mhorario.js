@@ -9,12 +9,11 @@ async function datahorario(){
     
     let horario = [];
 
-    await fetch(api+`/hora/${ihora}`)
+    await fetch(api+`/hora/idhora`)
     .then(response => response.json())
     .then((data) => horario = data[0])
         titulo.textContent += horario.idhorario;
         hora.value = horario.hora;
-        console.log(horario)
 
 }
 
@@ -37,7 +36,7 @@ async function guardar(){
         hora: hora.value,
 
     }
-
+    
     var xhr = new XMLHttpRequest();
        
     xhr.onreadystatechange = function() {

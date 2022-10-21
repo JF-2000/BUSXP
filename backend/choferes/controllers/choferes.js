@@ -5,8 +5,8 @@ const controllers = {};
 controllers.allchoferes = async function(req,res){
     try {
         await sql.connect(db)
-        var choferes = await sql.query(`SELECT idchofer, nombre, apellido, direccion, identificacion, telefono 
-        FROM choferes WHERE activo = 1 `)
+        var choferes = await sql.query(`SELECT idchofer, nombre, apellido, direccion, identificacion, telefono, activo 
+        FROM choferes`)
         var data = choferes.recordset
         res.send(data)
     } catch (error) {
@@ -14,6 +14,21 @@ controllers.allchoferes = async function(req,res){
     }
       
 }
+
+controllers.idchofer = async function(req,res){
+    try {
+        const idchofer = req.params.idchofer;
+        await sql.connect(db)
+        var chofer = await sql.query(`SELECT idchofer, c.iduser, email, c.nombre, apellido, direccion, identificacion, telefono 
+        from  choferes c
+        inner join usuarios u on u.iduser = c.iduser WHERE idchofer = ${idchofer}`)
+        var data = chofer.recordset
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 controllers.uchoferes = async function(req,res){
     try {
@@ -223,6 +238,77 @@ controllers.coordschoferes = async function(req,res){
     } catch (error) {
         console.log(error)
     }
+}
+
+
+controllers.modificarchofer = async function(req,res){
+    try {
+        const {iduser, idchofer,nombre,apellido,direccion,cedula,telefono} = req.body;
+        await sql.connect(db)
+        if(iduser == "" || iduser == null || iduser == undefined || iduser <= 0 ){
+            return res.send('err')
+        }
+        if(idchofer == "" || idchofer == null || idchofer == undefined || idchofer <= 0 ){
+            return res.send('err')
+        }
+        if(nombre == "" || nombre == null || nombre == undefined || nombre <= 0 ){
+            return res.send('err')
+        }
+        if(apellido == "" || apellido == null || apellido == undefined || apellido <= 0 ){
+            return res.send('err')
+        }
+        if(direccion == "" || direccion == null || direccion == undefined || direccion <= 0 ){
+            return res.send('err')
+        }
+        if(cedula == "" || cedula == null || cedula == undefined || cedula <= 0 ){
+            return res.send('err')
+        }
+        if(telefono == "" || telefono == null || telefono == undefined || telefono <= 0 ){
+            return res.send('err')
+        }
+        
+        var request = new sql.Request();
+    
+        request
+        .input('iduser',sql.Int,iduser)
+        .input('nombre',sql.VarChar(40),nombre)
+        .input('apellido',sql.VarChar(50),apellido)
+        .input('direccion',sql.VarChar(50),direccion)
+        .input('cedula',sql.VarChar(50),cedula)
+        .input('telefono',sql.VarChar(50),telefono)
+        .query(`UPDATE choferes SET iduser= @iduser, nombre = @nombre, apellido = @apellido, identificacion=@cedula, direccion= @direccion, telefono =@direccion WHERE idchofer = ${idchofer}`,[iduser,nombre,apellido,direccion,cedula,telefono])
+        res.sendStatus(200)
+        }catch (error) {
+            console.log(error);
+            res.send('err')
+        }
+}
+
+
+
+
+
+
+controllers.inachofer = async function(req,res){
+    try {
+        const {idchofer} = req.body;
+        if(idchofer == "" || idchofer == null || idchofer == undefined || idchofer <= 0 ){
+            res.send('err')
+        }
+        await sql.connect(db)
+        var act = await sql.query(`SELECT activo FROM choferes WHERE idchofer = ${idchofer}`)
+        if(act.recordset[0].activo === 1){
+            sql.query(`UPDATE choferes SET activo = 0 WHERE idchofer = ${idchofer}`)
+            res.sendStatus(200)
+        }
+        if(act.recordset[0].activo === 0){
+            sql.query(`UPDATE choferes SET activo = 1 WHERE idchofer = ${idchofer}`)
+            res.sendStatus(200)
+        }
+    }catch (error) {
+        console.log(error);
+    }
+          
 }
 
 

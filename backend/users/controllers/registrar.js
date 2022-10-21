@@ -32,6 +32,63 @@ controllers.registrar = async function(req,res){
     }
 }
 
+controllers.nuevoU = async function(req,res){
+    try {
+        const {nombre,email,password,authlvl} = req.body;
+        const passworden = await crypt.encriptar(password)
+        await sql.connect(db)
+        var verif = await sql.query(`select email from usuarios where email = '${email}'`)
+    
+        if(verif.recordset.length > 0){
+            return res.send('errmail')
+        }else{
+            var request = new sql.Request();
+    
+            request
+            .input('nombre',sql.VarChar(20),nombre)
+            .input('email',sql.VarChar(40),email)
+            .input('password',sql.VarChar(50),passworden)
+            .input('authlvl',sql.Int,authlvl)
+            .query(`INSERT INTO usuarios (nombre,email,password,auth) VALUES (@nombre,@email,@password,@authlvl)`,[nombre,email,passworden,authlvl])
+    
+            var iduser = await sql.query(`SELECT iduser from usuarios where email = '${email}'`)
+            const id = iduser.recordset[0].iduser
+            await mail.verificaremail(email,nombre,id)
+            res.sendStatus(200)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+controllers.modificarU = async function(req,res){
+    try {
+        const {nombre,email,password,authlvl,iduser} = req.body;
+        const passworden = await crypt.encriptar(password)
+        await sql.connect(db)
+        var verif = await sql.query(`select email from usuarios where email = '${email}'`)
+    
+        if(verif.recordset.length > 0){
+            return res.send('errmail')
+        }else{
+            var request = new sql.Request();
+    
+            request
+            .input('nombre',sql.VarChar(20),nombre)
+            .input('email',sql.VarChar(40),email)
+            .input('password',sql.VarChar(50),passworden)
+            .input('authlvl',sql.Int,authlvl)
+            .query(`UPDATE usuarios SET nombre = @nombre, email = @email, password = @password,  auth = @auth WHERE iduser = ${iduser}`,[nombre,email,passworden,authlvl])
+    
+            res.sendStatus(200)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 controllers.usuarios = async function(req,res){
     try {
         await sql.connect(db)

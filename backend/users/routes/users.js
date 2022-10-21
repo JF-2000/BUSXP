@@ -7,6 +7,7 @@ const Alluser = require("../controllers/Allusers")
 var app = express();
 
 app.post('/registrar', registrar.registrar);
+app.post('/nuevoU', registrar.nuevoU)
 app.post('/inauser', Alluser.inhabilitaruser);
 app.post('/verificar/verificaruser', verificar.verificarmail);
 app.post('/login',login.login);
@@ -15,5 +16,6 @@ app.get('/encriptaros', login.encriptop);
 app.get('/usuarios', registrar.usuarios);
 app.get('/ticket/inv/:iduser', user.ticketsdelusuario);
 app.post('/ticket/compartir', user.compartirticket);
+app.get('/users/:iduser', Alluser.userid)
 
 module.exports = app;
