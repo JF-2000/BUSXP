@@ -49,6 +49,7 @@ if(document.getElementById('head')){
             <div class="logo">BUSXP</div>
             <nav>
                 <a class="ab" href="/viewsA/dashboards/dashboards.html">Graficos</a>
+                <a class="ab" href="/viewsA/reportes/reportes.html">Reportes</a>
                 <a class="ab" href="/viewsA/usuarios/usuarios.html">Usuarios</a>
                 <div class="dropdown" data-dropdown>
                     <a class="dropmenu link" data-dropdown-button>Choferes <i class="fas fa-caret-square-down"></i></a>

@@ -1,8 +1,16 @@
+
+
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
+        labels: [
+
+        ],
         datasets: [{
+            data: [
+                
+            ],
             label: 'Ganancias x Rutas', 
             backgroundColor: [
                 'rgba(255, 99, 132)',
@@ -188,7 +196,7 @@ const myChart4 = new Chart(ctx4, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 4
         }]
     },
     options: {
@@ -210,7 +218,7 @@ fetch(url4)
 
 const mostrar4 = (totales) =>{
     totales.forEach(element => {
-        myChart4.data['labels'].push(element.hora)
+        myChart4.data['labels'].push(element.Hora)
         myChart4.data['datasets'][0].data.push(element.Cant)
     });
     

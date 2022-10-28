@@ -757,25 +757,29 @@ h6 {
 
 
 .chartMenu {
-    width: 100vw;
-    height: 40px;
+    padding: 75px;
 
-  }
-  .chartMenu p {
-    padding: 10px;
-    font-size: 20px;
-  }
-  .chartCard {
-    width: 500px;
+}
+
+.chartCard {
+    width: 750px;
     display: flex;
     align-items: flex-end;
     justify-content: last baseline;
-  }
-  .chartBox {
-    width: 700px;
-    padding: 20px;
-    border-radius: 20px;
 
+    
+}
+
+.chartBox {
+    border-color: rgb(0, 0, 0);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    width: 750px;
+    
   }
 
 

@@ -2,22 +2,22 @@ const db = require("../../conection");
 const sql = require('mssql');
 const controllers = {};
 
-controllers.total = async function(req,res){
+controllers.total = async function (req, res) {
     try {
         await sql.connect(db)
         var choferes = await sql.query(`SELECT DATENAME(month,fecha) as Fecha,
         SUM(total)as Total
         FROM tickets
-        Group BY fecha`)
+        Group BY DATENAME(month,fecha), MONTH(fecha)`)
         var data = choferes.recordset
         res.send(data)
     } catch (error) {
         console.log(error);
     }
-      
+
 }
 
-controllers.totalxruta = async function(req,res){
+controllers.totalxruta = async function (req, res) {
     try {
         await sql.connect(db)
         var choferes = await sql.query(`SELECT r.idruta, SUM(total)as Total, CONCAT(rutadesde,' ', rutahasta) AS Ruta
@@ -30,40 +30,41 @@ controllers.totalxruta = async function(req,res){
     } catch (error) {
         console.log(error);
     }
-      
+
 }
 
-controllers.rutasmasvendidas = async function(req,res){
+controllers.rutasmasvendidas = async function (req, res) {
     try {
         await sql.connect(db)
-        var choferes = await sql.query(`SELECT  STRING_AGG(CONVERT(VARCHAR(25), CONCAT(rutadesde,' ', rutahasta)), CHAR(0)) AS Ruta, COUNT(v.idruta) as Cant
+        var choferes = await sql.query(`SELECT  CONCAT(rutadesde,' ', rutahasta) AS Ruta, COUNT(v.idruta) as Cant
         FROM tickets t 
         inner join viajes v on v.idviaje = t.idviaje
         inner join rutas r on r.idruta = v.idruta
-        group by r.idruta`)
+        group by rutadesde,rutahasta`)
         var data = choferes.recordset
         res.send(data)
     } catch (error) {
         console.log(error);
     }
-      
+
 }
 
-controllers.horasmc = async function(req,res){
+controllers.horasmc = async function (req, res) {
     try {
         await sql.connect(db)
-        var choferes = await sql.query(`SELECT COUNT(v.idhorario) as Cant, CONVERT(varchar,hora,0)hora
-        From viajes v
-        inner join horarios h on h.idhorario = v.idhorario
-        Group By hora`)
+        var choferes = await sql.query(`SELECT TOP (5) COUNT(dbo.viajes.idhorario) AS Cant, CONVERT(varchar, dbo.horarios.hora, 0) AS Hora
+        FROM dbo.tickets INNER JOIN
+        dbo.viajes ON dbo.tickets.idviaje = dbo.viajes.idviaje INNER JOIN
+        dbo.horarios ON dbo.viajes.idhorario = dbo.horarios.idhorario
+        GROUP BY dbo.viajes.idhorario, dbo.horarios.hora`)
         var data = choferes.recordset
         res.send(data)
     } catch (error) {
         console.log(error);
     }
-      
+
 }
-controllers.choferesA = async function(req,res){
+controllers.choferesA = async function (req, res) {
     try {
         await sql.connect(db)
         var choferes = await sql.query(`SELECT COUNT(idchofer) as Conductores, COUNT(activo) as Cant FROM choferes group by activo`)
@@ -72,9 +73,9 @@ controllers.choferesA = async function(req,res){
     } catch (error) {
         console.log(error);
     }
-      
+
 }
-controllers.usuariosA = async function(req,res){
+controllers.usuariosA = async function (req, res) {
     try {
         await sql.connect(db)
         var choferes = await sql.query(`SELECT COUNT(iduser) as Usuarios, COUNT(activo) as Cant FROM usuarios group by activo`)
@@ -83,9 +84,9 @@ controllers.usuariosA = async function(req,res){
     } catch (error) {
         console.log(error);
     }
-      
+
 }
-controllers.ticketsV = async function(req,res){
+controllers.ticketsV = async function (req, res) {
     try {
         await sql.connect(db)
         var choferes = await sql.query(`SELECT CONCAT(nombre,' ', apellido) As Chofer, COUNT(t.idchofer) as Validaciones
@@ -98,7 +99,26 @@ controllers.ticketsV = async function(req,res){
     } catch (error) {
         console.log(error);
     }
-      
+
+}
+
+controllers.reportes = async function (req, res) {
+    try {
+        await sql.connect(db)
+        var choferes = await sql.query(`SELECT        dbo.tickets.idticket AS Ticket_Id,CONCAT(rutadesde, ' ', rutahasta) as Ruta, CONVERT(varchar, dbo.horarios.hora, 0) AS Hora, 
+        CONVERT(varchar,dbo.tickets.fecha,3) AS Fecha, dbo.tickets.total AS Total,
+        dbo.tickets.personas AS 'Cant'
+        FROM dbo.tickets INNER JOIN
+        dbo.viajes ON dbo.tickets.idviaje = dbo.viajes.idviaje INNER JOIN
+        dbo.horarios ON dbo.viajes.idhorario = dbo.horarios.idhorario INNER JOIN
+        dbo.rutas ON dbo.viajes.idruta = dbo.rutas.idruta
+        GROUP BY dbo.viajes.idhorario, dbo.horarios.hora, dbo.tickets.idticket, dbo.tickets.idviaje, dbo.tickets.fecha, dbo.tickets.total, dbo.tickets.personas, dbo.rutas.rutadesde, dbo.rutas.rutahasta`)
+        var data = choferes.recordset
+        res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 
