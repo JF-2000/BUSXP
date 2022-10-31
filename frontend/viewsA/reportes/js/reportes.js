@@ -1,4 +1,7 @@
 const lreportes = document.getElementById("reportes")
+const desde = document.getElementById("desde")
+const hasta = document.getElementById("hasta")
+
 
 async function reportesL(){
     let reportes = [];
@@ -34,3 +37,51 @@ function printDiv() {
     a.document.write('</body></html>');
     a.document.close();
     a.print();}
+
+
+
+    document.getElementById('generar').addEventListener('click',(e)=>{
+      e.preventDefault();
+      generar();
+      console.log(desde.value)
+      console.log(hasta.value)
+
+  })
+  
+  async function generar(){
+  
+  
+      if(desde.value == "" || desde.value == null || desde.value == undefined){
+          swal("¡Error!","¡Ingrese una Fecha Correcta!","error")
+          return false;
+      }
+      if(hasta.value == "" || hasta.value == null || hasta.value == undefined){
+          swal("¡Error!","¡Ingrese una Fecha Correcta!","error")
+          return false;
+      }
+  
+      var data = {
+          desde: desde.value,
+          hasta: hasta.value,  
+      }
+      
+  
+      var xhr = new XMLHttpRequest();
+         
+  
+      xhr.onerror = function(){
+          alert("Ocurrio un problema, por favor intentelo mas tarde.")
+      };
+      
+
+      xhr.onerror = function(){
+        alert("Ocurrio un problema, por favor intentelo mas tarde.")
+      };
+
+      xhr.open("POST", api+"/charts/reportesG");
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json");
+  
+      xhr.send(JSON.stringify(data));
+          
+  }
