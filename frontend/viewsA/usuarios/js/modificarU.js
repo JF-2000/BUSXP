@@ -74,11 +74,13 @@ async function guardar(){
         return false;
     }
 
+    var emailc = email.value;
+    var correo = emailc.toLocaleLowerCase()
 
     var data = {
         iduser : iuser,
         nombre: nombre.value,
-        email: email.value,
+        email: correo,
         password: password.value,
         authlvl: authlvl.value
     }

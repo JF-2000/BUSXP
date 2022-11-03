@@ -13,42 +13,23 @@
     <title>Reportes</title>
 </head>
 
-<body onload="reportesL()">
+<body onload="fecha()">
     <header id="head"></header>
-    <div class="buscar">
-        <label>Imprimir Reporte</label>
-        <div style="display: inline-block;"><a class="btn btn3 btn-primary" onclick="printDiv()"><i
-                    class="fas fa-solid fa-print"></i></a></div>
-    </div>
     <div class="card-5">
         <div class="card-heading">
             <h2 class="title2">Reportes</h2>
             <h3 class="title3">Tickets Vendidos</h3>
         </div>
-        <div class="form-row" >
-            <div class=" name">Desde: </div>
-        <div class="value">
-            <div class="input-group"  style="justify-content: last baseline;"  >
-                <div>
-                    <input class="input" type="date" maxlength="50" id="desde" required
-                        style="justify-content: last baseline;">
-                    <span></span>
-                </div>
+        <div class="buscar">
+            <div style="display: inline-block;">
+                <div class="name">Desde: </div><input class="input" type="date" maxlength="50" id="desde" required style="justify-content: last baseline;">
             </div>
-        </div>
-        <div class="name">Hasta: </div>
-        <div class="value">
-            <div class="input-group" style="justify-content: last baseline;" >
-                <div>
-                    <input class="input" type="date" maxlength="50" id="hasta" required
-                        style="justify-content: last baseline;">
-                    <span></span>
-                </div>
-                <div style="text-align: center;">
-                    <button type="submit" class="btn btn-primary" id="generar">Generar Reporte</button>
-                </div>
+            <div style="display: inline-block;">
+                <div class=" name">Hasta: </div><input class="input" type="date" maxlength="50" id="hasta" required style="justify-content: last baseline;">
             </div>
+            <a class="btn btn3 btn-primary" onclick="printDiv()"><i class="fas fa-solid fa-print"></i></a>
         </div>
+
         <div id="reportes" class="table"></div>
     </div>
 </body>

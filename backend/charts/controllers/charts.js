@@ -101,26 +101,6 @@ controllers.ticketsV = async function (req, res) {
     }
 
 }
-controllers.reportes = async function (req, res) {
-    try {
-        cons ={desde, hasta} = req.body;
-        await sql.connect(db)
-        var choferes = await sql.query(`SELECT dbo.tickets.idticket AS Ticket_Id,CONCAT(rutadesde, ' ', rutahasta) as Ruta, CONVERT(varchar, dbo.horarios.hora, 0) AS Hora, 
-        CONVERT(varchar,dbo.tickets.fecha,3) AS Fecha, dbo.tickets.total AS Total,
-        dbo.tickets.personas AS 'Cant'
-        FROM dbo.tickets INNER JOIN
-        dbo.viajes ON dbo.tickets.idviaje = dbo.viajes.idviaje INNER JOIN
-        dbo.horarios ON dbo.viajes.idhorario = dbo.horarios.idhorario INNER JOIN
-        dbo.rutas ON dbo.viajes.idruta = dbo.rutas.idruta
-        GROUP BY dbo.viajes.idhorario, dbo.horarios.hora, dbo.tickets.idticket, dbo.tickets.idviaje, dbo.tickets.fecha, dbo.tickets.total, dbo.tickets.personas, dbo.rutas.rutadesde, dbo.rutas.rutahasta`)
-        var data = choferes.recordset
-        res.send(data)
-    } catch (error) {
-        console.log(error);
-    }
-
-}
-
 
 controllers.reportesF = async function (req, res) {
     try {

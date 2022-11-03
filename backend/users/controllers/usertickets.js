@@ -12,7 +12,7 @@ controllers.ticketsdelusuario = async function(req,res){
         LTRIM(RIGHT(CONVERT(VARCHAR(20), fecha, 100), 7))horac,total, CONVERT(varchar,hora,0)horat
         from tickets t left outer join viajes v on v.idviaje = t.idviaje inner join horarios h on h.idhorario = v.idhorario
         inner join rutas r on r.idruta = v.idruta inner join usuarios u on u.iduser = t.iduser
-        where t.iduser = 1 and t.activo = 1 and CONVERT(varchar,t.fecha,1) >= CONVERT(varchar,GETDATE(),1) and convert(time, DATEADD(minute,20,hora),108) >= CONVERT(time,SYSDATETIME(),108)`)
+        where t.iduser = ${id} and t.activo = 1 and CONVERT(varchar,t.fecha,1) >= CONVERT(varchar,GETDATE(),1) and convert(time, DATEADD(minute,20,hora),108) >= CONVERT(time,SYSDATETIME(),108)`)
 
         var datos = tickets.recordset;
         for(i=0; i < tickets.recordset.length; i++){

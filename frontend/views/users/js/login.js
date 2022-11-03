@@ -36,9 +36,11 @@ async function logger(){
         swal("¡Error!","¡Ingrese una contraseña!","error")
         return false;
     }
+    var emailc = email.value;
+    var correo = emailc.toLocaleLowerCase()
 
     var data = {
-        email: email.value,
+        email: correo,
         password: password.value
     }
 
@@ -73,10 +75,9 @@ async function logger(){
         
 }
 
-document.getElementById('password')
-    .addEventListener('keyup', function(event) {
-        if (event.code === 'Enter'){
-            event.preventDefault();
-            logger();
-        }
+document.getElementById('password').addEventListener('keyup', function(event) {
+    if (event.code === 'Enter'){
+        event.preventDefault();
+        logger();
+    }
 });

@@ -48,9 +48,12 @@ async function guardar(){
         return false;
     }
 
+    var emailc = email.value;
+    var correo = emailc.toLocaleLowerCase()
+
     var data = {
         nombre: nombre.value,
-        email: email.value,
+        email: correo,
         password: password.value
     }
 

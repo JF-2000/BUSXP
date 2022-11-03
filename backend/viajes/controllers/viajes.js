@@ -250,7 +250,4 @@ async function resetrutas(){
 }
 
 
-
-
-
 module.exports = controllers;
