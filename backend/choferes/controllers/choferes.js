@@ -232,7 +232,8 @@ controllers.coordschoferes = async function(req,res){
     try {
         await sql.connect(db)
         var coords = await sql.query(`SELECT cc.idchofer, nombre, apellido, telefono, latitude, longitude
-        FROM coordenadas_choferes cc inner join choferes c on c.idchofer = cc.idchofer`)
+        FROM coordenadas_choferes cc inner join choferes c on c.idchofer = cc.idchofer 
+        WHERE c.activo = 1`)
         var data = coords.recordset
         res.send(data)
     } catch (error) {

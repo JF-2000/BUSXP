@@ -18,4 +18,5 @@ app.get('/ticket/inv/:iduser', user.ticketsdelusuario);
 app.post('/ticket/compartir', user.compartirticket);
 app.get('/users/:iduser', Alluser.userid)
 
+
 module.exports = app;

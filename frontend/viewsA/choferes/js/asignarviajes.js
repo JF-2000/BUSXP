@@ -121,7 +121,7 @@ async function Asignarviajes(){
        
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            swal("¡Registrado!","Verifique el mensaje de validación enviado a su correo.","success")
+            swal("¡Asignado!","Los viajes han sido asignados correctamente al chofer..","success")
         }
     }
 

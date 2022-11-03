@@ -67,5 +67,3 @@ async function initMap(){
     map: map
   });
 }
-
-loadchoferes();

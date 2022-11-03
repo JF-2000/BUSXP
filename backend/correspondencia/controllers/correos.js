@@ -22,7 +22,7 @@ controllers.reporteviaje = async function(req,res){
         inner join viajes v on v.idviaje = t.idviaje
         where CONVERT(varchar,t.fecha,1) >= CONVERT(varchar,GETDATE(),1) and v.idviaje = ${viaje}`)
         data = emails.recordset;
-        mail.emailrecordatorio(data,msg);
+        mail.emailreporte(data,msg);
         res.sendStatus(200);
     } catch (error) {
         console.log(error)
