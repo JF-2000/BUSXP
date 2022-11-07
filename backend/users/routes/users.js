@@ -17,6 +17,8 @@ app.get('/usuarios', registrar.usuarios);
 app.get('/ticket/inv/:iduser', user.ticketsdelusuario);
 app.post('/ticket/compartir', user.compartirticket);
 app.get('/users/:iduser', Alluser.userid)
+app.get('/users/perfil/:iduser', Alluser.perfilid)
+app.post('/users/perfilmodif', registrar.perfilmodif)
 
 
 module.exports = app;

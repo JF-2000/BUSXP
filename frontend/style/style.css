@@ -830,3 +830,9 @@ h6 {
 .mar10{
     margin: 10px;
 }
+
+.perfil{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}

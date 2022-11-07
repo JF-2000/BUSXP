@@ -30,6 +30,7 @@ if(document.getElementById('head')){
                     <div class="dropdown-menu">
                         <ul>
                             <li><a href="/views/users/ticketinv.html">Tickets</a></li>
+                            <li><a href="/views/users/perfil.html">Perfil</a></li>
                             <li><a href="" id="CS">Cerrar sesión</a></li>
                         </ul>
                     </div>
@@ -74,6 +75,7 @@ if(document.getElementById('head')){
                     <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
                     <div class="dropdown-menu">
                         <ul>
+                            <li><a href="/views/users/perfil.html">Perfil</a></li>
                             <li><a href="" id="CS">Cerrar sesión</a></li>
                         </ul>
                     </div>
@@ -97,6 +99,7 @@ if(document.getElementById('head')){
                     <a class="dropmenu link" data-dropdown-button>${localStorage.getItem('uname')} <i class="fas fa-caret-square-down"></i></a>
                     <div class="dropdown-menu">
                         <ul>
+                            <li><a href="/views/users/perfil.html">Perfil</a></li>
                             <li><a href="" id="CS">Cerrar sesión</a></li>
                         </ul>
                     </div>

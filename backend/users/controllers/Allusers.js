@@ -1,6 +1,7 @@
 const db = require("../../conection");
 const sql = require('mssql');
-const crypt = require('../../helpers/encript')
+const crypt = require('../../helpers/encript');
+const { password } = require("../../conection");
 const controllers = {};
 
 controllers.Allusers = async function(req,res){
@@ -34,6 +35,22 @@ controllers.inhabilitaruser = async function(req,res){
         console.log(error);
     }
       
+}
+
+controllers.perfilid = async function(req,res){
+    try {
+        const iduser = req.params.iduser;
+        await sql.connect(db)
+        var usuario = await sql.query(`SELECT iduser, nombre, email, password FROM usuarios WHERE iduser = ${iduser} `)
+
+        var nombre = usuario.recordset[0].nombre;
+        var email = usuario.recordset[0].email;
+        var password = await crypt.desencriptar(usuario.recordset[0].password);
+        var data = [nombre,email,password]
+        res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 controllers.userid = async function(req,res){

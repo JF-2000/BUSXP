@@ -88,6 +88,23 @@ controllers.modificarU = async function(req,res){
     }
 }
 
+controllers.perfilmodif = async function(req,res){
+    try {
+        const {nombre,password,id} = req.body;
+        const passworden = await crypt.encriptar(password)
+        await sql.connect(db)
+        var request = new sql.Request();
+
+        request
+        .input('nombre',sql.VarChar(20),nombre)
+        .input('password',sql.VarChar(50),passworden)
+        .query(`UPDATE usuarios SET nombre = @nombre, password = @password WHERE iduser = ${id}`,[nombre,passworden])
+        res.sendStatus(200)
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 controllers.usuarios = async function(req,res){
     try {
