@@ -6,7 +6,7 @@ async function horariosL(){
     .then(response => response.json())
     .then((data) => horario = data);
     html = `<table class="table table-bordered" id="tab">
-    <tr><th>ID</th><th>Horario</th></tr>`
+    <tr><th>ID</th><th>Horario</th><th>Modificar</th><th>Activar/Desactivar</th></tr>`
     horario.forEach(hora => {
 
       html += 
